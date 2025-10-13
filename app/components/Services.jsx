@@ -9,7 +9,7 @@ const Services = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            id='services' className='w-full px-[12%] py-10 scroll-mt-20'>
+            id='service' className='w-full px-[12%] py-10 scroll-mt-20'>
 
             <motion.h4
                 initial={{ opacity: 0, y: -20 }}
@@ -32,7 +32,7 @@ const Services = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                I am frontend developer with a strong background in creating visually appealing and user-friendly websites. I have a passion for crafting seamless user experiences through intuitive interfaces and engaging designs. My expertise lies in HTML, CSS, JavaScript, and various front-end frameworks, allowing me to build responsive and accessible websites that not only look great but also function flawlessly across different devices and browsers.
+                As a Data Scientist and AI Specialist, I am passionate about uncovering the stories hidden within data. My strength lies in analyzing complex datasets to identify key trends and building predictive models that empower strategic decision-making. With a deep expertise in statistical analysis, machine learning algorithms, and data visualization tools, I deliver clear, actionable insights that drive business growth and operational efficiency.
             </motion.p>
 
             <motion.div
@@ -44,7 +44,7 @@ const Services = () => {
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         key={index} className='border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 dark:hover:bg-darkHover dark:hover:shadow-white'>
-                        <Image src={icon} alt='' className='w-10' />
+                        <Image src={icon} alt='' className='w-100 items:center' />
                         <h3 className='text-lg my-4 text-gray-700'>{title}</h3>
                         <p className='text-sm text-gray-600 leading-5 dark:text-white/80'>
                             {description}

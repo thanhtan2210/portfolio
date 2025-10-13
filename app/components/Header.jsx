@@ -19,7 +19,7 @@ const Header = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className='flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo'>
-                Hi! I'm William Mark <Image src={assets.hand_icon} alt='' className='w-6' />
+                Hi! I'm Phan Thanh Tan <Image src={assets.hand_icon} alt='' className='w-6' />
             </motion.h3>
 
             <motion.h1
@@ -27,7 +27,7 @@ const Header = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className='text-3xl sm:text-6xl lg:text-[66px] font-Ovo'>
-                front-end developer & designer in London
+                Data & AI Specialist
             </motion.h1>
 
             <motion.p
@@ -35,7 +35,7 @@ const Header = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className='max-w-2xl mx-auto font-Ovo'>
-                I am a front-end developer and designer based in London with a passion for creating beautiful, functional, and user-centered digital experiences. With a strong background in HTML, CSS, JavaScript, and various front-end frameworks, I specialize in building responsive and accessible websites that not only look great but also provide an intuitive user experience.
+                A highly motivated AI Engineer and Data Scientist based in Ho Chi Minh City, specializing in developing scalable machine learning models and transforming complex data into actionable insights. Passionate about leveraging AI to solve real-world business challenges.
             </motion.p>
 
             <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>

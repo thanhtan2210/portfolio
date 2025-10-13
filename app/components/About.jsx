@@ -43,7 +43,7 @@ const About = ({ isDarkMode }) => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className='flex-1'>
                     <p>
-                        I am experience enumerate object in design and front-end development, with a strong background in creating visually appealing and user-friendly websites. I have a passion for crafting seamless user experiences through intuitive interfaces and engaging designs. My expertise lies in HTML, CSS, JavaScript, and various front-end frameworks, allowing me to build responsive and accessible websites that not only look great but also function flawlessly across different devices and browsers.
+                        As a Data & AI Specialist, I excel at turning raw data into measurable business value. I am passionate about uncovering hidden patterns and building end-to-end machine learning pipelines that solve critical challenges. Leveraging my expertise in data modeling, statistical analysis, and deep learning, I develop robust solutions that empower data-informed decision-making and drive strategic growth.
                     </p>
 
                     <motion.ul

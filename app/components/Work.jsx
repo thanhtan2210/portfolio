@@ -32,7 +32,7 @@ const Work = ({ isDarkMode }) => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                Welcome to my portfolio! Here, you'll find a curated selection of my latest projects that showcase my skills and expertise in front-end development and design. Each project reflects my commitment to creating visually appealing and user-friendly websites that deliver seamless user experiences. Feel free to explore my work and see how I can bring your ideas to life through innovative design and cutting-edge technology.
+                I am an AI Engineer focused on architecting and deploying end-to-end machine learning solutions. I have a passion for building intelligent systems that can learn and adapt to solve critical business problems automatically. My expertise in Python, deep learning, and MLOps principles allows me to create high-performance models that are not only accurate but also scalable and reliable in production environments.
             </motion.p>
 
             <motion.div

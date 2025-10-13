@@ -35,6 +35,12 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+import python from './python.png';
+import aws from './aws.png';
+import ml_icon from './ml_icon.png';
+import analysis_icon from './analysis_icon.png';
+import dashboard_icon from './dashboard_icon.png';
+import ai_solution_icon from './ai_solution_icon.png';
 
 export const assets = {
     user_image,
@@ -73,45 +79,70 @@ export const assets = {
     right_arrow,
     send_icon,
     right_arrow_bold,
-    right_arrow_bold_dark
+    right_arrow_bold_dark,
+    python, aws,
+    ml_icon,
+    ai_solution_icon,
+    analysis_icon,
+    dashboard_icon
 };
 
 export const workData = [
     {
-        title: 'Frontend project',
-        description: 'Web Design',
+        title: 'Customer Churn Prediction',
+        description: 'Machine Learning',
         bgImage: '/work-1.png',
     },
     {
-        title: 'Geo based app',
-        description: 'Mobile App',
+        title: 'Sentiment Analysis System',
+        description: 'NLP',
         bgImage: '/work-2.png',
     },
     {
-        title: 'Photography site',
-        description: 'Web Design',
+        title: 'Object Detection',
+        description: 'Computer Vision',
         bgImage: '/work-3.png',
     },
     {
-        title: 'UI/UX designing',
-        description: 'UI/UX Design',
+        title: 'Data Analysis Dashboard',
+        description: 'Data Visualization & BI',
         bgImage: '/work-4.png',
     },
 ]
 
 export const serviceData = [
-    { icon: assets.web_icon, title: 'Web design', description: 'Web development is the process of building, programming...', link: '' },
-    { icon: assets.mobile_icon, title: 'Mobile app', description: 'Mobile app development involves creating software for mobile devices...', link: '' },
-    { icon: assets.ui_icon, title: 'UI/UX design', description: 'UI/UX design focuses on creating a seamless user experience...', link: '' },
-    { icon: assets.graphics_icon, title: 'Graphics design', description: 'Creative design solutions to enhance visual communication...', link: '' },
+    {
+        icon: assets.analysis_icon,
+        title: 'Data Analysis & Insight Discovery',
+        description: 'Turning raw data into valuable business insights. I analyze complex datasets to uncover hidden trends, critical patterns, and answer core business questions.',
+        link: ''
+    },
+    {
+        icon: assets.ml_icon,
+        title: 'Machine Learning & Predictive Modeling',
+        description: 'Designing and training custom machine learning models to forecast future trends, classify data, and automate complex decisions for a competitive edge.',
+        link: ''
+    },
+    {
+        icon: assets.dashboard_icon,
+        title: 'Data Visualization & Dashboards',
+        description: 'Building interactive dashboards and compelling visual reports, making it easy for stakeholders to track KPIs, explore data, and make decisions quickly.',
+        link: ''
+    },
+    {
+        icon: assets.ai_solution_icon,
+        title: 'AI-Powered Solution Development',
+        description: 'Developing end-to-end AI solutions like recommendation engines or intelligent chatbots to integrate directly into your products and workflows.',
+        link: ''
+    },
 ]
 
 export const infoList = [
-    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages', description: 'HTML, CSS, JavaScript React Js, Next Js' },
-    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'B.Tech in Computer Science' },
-    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built more than 5 projects' }
+    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages', description: 'Python, R, C++, JavaScript, React Js, Next Js' },
+    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Bachelor in Computer Science' },
+    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built more than 3 projects' }
 ];
 
 export const toolsData = [
-    assets.vscode, assets.firebase, assets.mongodb, assets.figma, assets.git
+    assets.vscode, assets.aws, assets.mongodb, assets.git, assets.python
 ];
