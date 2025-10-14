@@ -17,9 +17,10 @@ const Footer = ({ isDarkMode }) => {
             <div className='text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-6'>
                 <p>© 2025 Thanh Tan Phan. All rights reserved</p>
                 <ul className='flex items-center gap-10 justify-center mt-4 sm:mt-0'>
-                    <li><a target='_blank' href="#">Github</a></li>
-                    <li><a target='_blank' href="#">LinkedIn</a></li>
-                    <li><a target='_blank' href="#">X</a></li>
+                    <li><a target='_blank' href="https://github.com/thanhtan2210">Github</a></li>
+                    <li><a target='_blank' href="https://www.linkedin.com/in/t%E1%BA%A5n-thanh-8906a6261/">LinkedIn</a></li>
+                    <li><a target='_blank' href="https://www.facebook.com/thanh.tan.12141">Facebook</a></li>
+                    <li><a href="https://www.leetcode.com/thanhtanphan-shaw" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="thanhtanphan-shaw" height="20" width="20" /></a></li>
                 </ul>
             </div>
         </div>

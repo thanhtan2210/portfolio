@@ -49,7 +49,7 @@ const Services = () => {
                         <p className='text-sm text-gray-600 leading-5 dark:text-white/80'>
                             {description}
                         </p>
-                        <a href={link} className='flex items-center gap-2 text-sm mt-5'>
+                        <a href="#contact" className='flex items-center gap-2 text-sm mt-5'>
                             Read more <Image src={assets.right_arrow} alt='' className='w-4' />
                         </a>
                     </motion.div>

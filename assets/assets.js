@@ -41,6 +41,7 @@ import ml_icon from './ml_icon.png';
 import analysis_icon from './analysis_icon.png';
 import dashboard_icon from './dashboard_icon.png';
 import ai_solution_icon from './ai_solution_icon.png';
+import { time } from 'motion';
 
 export const assets = {
     user_image,
@@ -92,22 +93,50 @@ export const workData = [
         title: 'Customer Churn Prediction',
         description: 'Machine Learning',
         bgImage: '/work-1.png',
+        link: 'https://github.com/thanhtan2210/Customer_Churn_Prediction'
     },
     {
         title: 'Sentiment Analysis System',
         description: 'NLP',
         bgImage: '/work-2.png',
+        link: 'https://github.com/thanhtan2210/Semtiment_Analysis'
     },
     {
         title: 'Object Detection',
         description: 'Computer Vision',
         bgImage: '/work-3.png',
+        link: 'https://github.com/thanhtan2210/Object_Detection'
     },
     {
         title: 'Data Analysis Dashboard',
         description: 'Data Visualization & BI',
         bgImage: '/work-4.png',
+        link: 'https://github.com/thanhtan2210/Sales_Dashboard'
     },
+    {
+        title: 'Power Hub',
+        description: 'build an IOT web page',
+        bgImage: './PowerHub.png',
+        link: 'https://github.com/thanhtan2210/PowerHub'
+    },
+    {
+        title: 'AI agent chess',
+        description: 'Machine Learning basic',
+        bgImage: './AI_agent.jpg',
+        link: 'https://github.com/thanhtan2210/ai-agent-chess'
+    },
+    {
+        title: 'Hotel Management System',
+        description: 'Web Development',
+        bgImage: './Hotel_managment.png',
+        link: 'https://github.com/thanhtan2210/hotel-management-system'
+    },
+    {
+        title: 'MTE',
+        description: 'Web Development (Not done yet)',
+        bgImage: '',
+        link: 'https://github.com/thanhtan2210/management-time'
+    }
 ]
 
 export const serviceData = [

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { assets, workData } from '@/assets/assets'
 import React from 'react'
 import { motion } from 'motion/react'
+import Link from 'next/link';
 
 const Work = ({ isDarkMode }) => {
     return (
@@ -40,7 +41,7 @@ const Work = ({ isDarkMode }) => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
                 className='grid grid-cols-auto my-10 gap-5 dark:text-black'>
-                {workData.map((project, index) => (
+                {workData.slice(0, 4).map((project, index) => (
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
@@ -50,21 +51,25 @@ const Work = ({ isDarkMode }) => {
                                 <h2 className='font-semibold'>{project.title}</h2>
                                 <p className='text-sm text-gray-700'>{project.description}</p>
                             </div>
-                            <div className='border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition'>
-                                <Image src={assets.send_icon} alt='send icon' className='w-5' />
-                            </div>
+                            <a href={project.link}>
+                                <div className='border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition'>
+                                    <Image src={assets.send_icon} alt='send icon' className='w-5' />
+                                </div>
+                            </a>
                         </div>
                     </motion.div>
                 ))}
             </motion.div>
 
-            <motion.a
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1.1 }}
-                href="" className='flex w-max items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover'>
-                Show more <Image src={isDarkMode ? assets.right_arrow_bold_dark : assets.right_arrow_bold} alt='' className='w-4' />
-            </motion.a>
+            <Link href="/work">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 1.1 }}
+                    className='flex w-max items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover'>
+                    Show more <Image src={isDarkMode ? assets.right_arrow_bold_dark : assets.right_arrow_bold} alt='' className='w-4' />
+                </motion.div>
+            </Link>
         </motion.div>
     )
 }
