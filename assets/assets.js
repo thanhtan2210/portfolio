@@ -41,6 +41,7 @@ import ml_icon from './ml_icon.png';
 import analysis_icon from './analysis_icon.png';
 import dashboard_icon from './dashboard_icon.png';
 import ai_solution_icon from './ai_solution_icon.png';
+import backend_icon from './backend_icon.png';
 import { time } from 'motion';
 
 export const assets = {
@@ -85,15 +86,16 @@ export const assets = {
     ml_icon,
     ai_solution_icon,
     analysis_icon,
-    dashboard_icon
+    dashboard_icon,
+    backend_icon
 };
 
 export const workData = [
     {
-        title: 'Customer Churn Prediction',
-        description: 'Machine Learning',
+        title: 'Scalable Customer Data Platform (CDP)',
+        description: 'Data Engineering (DE), Data Science (DS), and MLOps requirements.',
         bgImage: '/work-1.png',
-        link: 'https://github.com/thanhtan2210/Customer_Churn_Prediction'
+        link: 'https://github.com/thanhtan2210/Scalable-Customer-Data-Platform-CDP'
     },
     {
         title: 'Sentiment Analysis System',
@@ -102,14 +104,8 @@ export const workData = [
         link: 'https://github.com/thanhtan2210/Semtiment_Analysis'
     },
     {
-        title: 'Object Detection',
-        description: 'Computer Vision',
-        bgImage: '/work-3.png',
-        link: 'https://github.com/thanhtan2210/Object_Detection'
-    },
-    {
-        title: 'Data Analysis Dashboard',
-        description: 'Data Visualization & BI',
+        title: 'Sales Dashboard: Enterprise Data Platform',
+        description: 'Data Visualization & BI, ELT pipeline',
         bgImage: '/work-4.png',
         link: 'https://github.com/thanhtan2210/Sales_Dashboard'
     },
@@ -130,41 +126,35 @@ export const workData = [
         description: 'Web Development',
         bgImage: './Hotel_managment.png',
         link: 'https://github.com/thanhtan2210/hotel-management-system'
-    },
-    {
-        title: 'MTE',
-        description: 'Web Development (Not done yet)',
-        bgImage: '',
-        link: 'https://github.com/thanhtan2210/management-time'
     }
 ]
 
 export const serviceData = [
     {
-        icon: assets.analysis_icon,
-        title: 'Data Analysis & Insight Discovery',
-        description: 'Turning raw data into valuable business insights. I analyze complex datasets to uncover hidden trends, critical patterns, and answer core business questions.',
+        icon: assets.dashboard_icon, // Đổi icon cho phù hợp (ví dụ: database, server)
+        title: 'Data Pipeline & Infrastructure Engineering',
+        description: 'Designing and building robust ETL pipelines and scalable data architectures. I transform, clean, and consolidate raw data into reliable databases to fuel applications and analytics.',
         link: ''
     },
     {
-        icon: assets.ml_icon,
-        title: 'Machine Learning & Predictive Modeling',
-        description: 'Designing and training custom machine learning models to forecast future trends, classify data, and automate complex decisions for a competitive edge.',
+        icon: assets.backend_icon, // Đổi icon (ví dụ: api, code)
+        title: 'Scalable Backend & Software Systems',
+        description: 'Architecting high-performance backend systems and APIs. I bridge the gap between complex databases and applications to deliver secure, scalable, and seamless software solutions.',
         link: ''
     },
     {
-        icon: assets.dashboard_icon,
-        title: 'Data Visualization & Dashboards',
-        description: 'Building interactive dashboards and compelling visual reports, making it easy for stakeholders to track KPIs, explore data, and make decisions quickly.',
+        icon: assets.ml_icon, // Đổi icon (ví dụ: gear, cloud)
+        title: 'Machine Learning Engineering & MLOps',
+        description: 'Bridging the gap between data science and production. I optimize, scale, and deploy machine learning models into live environments, ensuring reliable performance and automated workflows.',
         link: ''
     },
     {
         icon: assets.ai_solution_icon,
-        title: 'AI-Powered Solution Development',
-        description: 'Developing end-to-end AI solutions like recommendation engines or intelligent chatbots to integrate directly into your products and workflows.',
+        title: 'End-to-End AI Integration',
+        description: 'Developing and seamlessly integrating AI capabilities into existing software ecosystems. From intelligent APIs to automated data platforms, I build solutions that drive real business value.',
         link: ''
     },
-]
+];
 
 export const infoList = [
     { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages', description: 'Python, R, C++, JavaScript, React Js, Next Js' },

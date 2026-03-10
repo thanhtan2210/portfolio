@@ -27,7 +27,7 @@ const Header = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className='text-3xl sm:text-6xl lg:text-[66px] font-Ovo'>
-                Data & AI Specialist
+                Data & Software Engineer
             </motion.h1>
 
             <motion.p
@@ -35,7 +35,7 @@ const Header = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className='max-w-2xl mx-auto font-Ovo'>
-                A highly motivated AI Engineer and Data Scientist based in Ho Chi Minh City, specializing in developing scalable machine learning models and transforming complex data into actionable insights. Passionate about leveraging AI to solve real-world business challenges.
+                Ho Chi Minh City-based Data and Software Engineer. I specialize in building robust data pipelines, deploying scalable ML models, and leveraging AI to solve real-world business problems.
             </motion.p>
 
             <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
@@ -43,14 +43,14 @@ const Header = () => {
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 1.2 }}
-                    href="contact" className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2 dark:bg-transparent'>
+                    href="#contact" className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2 dark:bg-transparent'>
                     contact me <Image src={assets.right_arrow_white} alt='' className='w-4' />
                 </motion.a>
                 <motion.a
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 1 }}
-                    href="sample-resume.pdf" download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
+                    href="1.pdf" download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
                     my resume <Image src={assets.download_icon} alt='' className='w-4' />
                 </motion.a>
             </div>

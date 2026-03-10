@@ -33,7 +33,7 @@ const Work = ({ isDarkMode }) => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                I am an AI Engineer focused on architecting and deploying end-to-end machine learning solutions. I have a passion for building intelligent systems that can learn and adapt to solve critical business problems automatically. My expertise in Python, deep learning, and MLOps principles allows me to create high-performance models that are not only accurate but also scalable and reliable in production environments.
+                Data & Software Engineer specializing in building scalable backend architectures and robust data platforms. I bridge the gap between software development and data engineering to design high-performance applications, optimize complex databases, and deliver reliable data pipelines.
             </motion.p>
 
             <motion.div

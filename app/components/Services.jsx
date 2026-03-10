@@ -32,7 +32,7 @@ const Services = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                As a Data Scientist and AI Specialist, I am passionate about uncovering the stories hidden within data. My strength lies in analyzing complex datasets to identify key trends and building predictive models that empower strategic decision-making. With a deep expertise in statistical analysis, machine learning algorithms, and data visualization tools, I deliver clear, actionable insights that drive business growth and operational efficiency.
+                As a Data and Software Engineer, I am passionate about building robust data infrastructure and scalable backend systems. My strength lies in architecting efficient data pipelines, optimizing complex databases, and integrating machine learning models into production environments. With a deep foundation in software engineering principles, I transform raw data into reliable, high-performance applications that drive operational efficiency.
             </motion.p>
 
             <motion.div
