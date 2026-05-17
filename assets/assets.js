@@ -95,37 +95,92 @@ export const workData = [
         title: 'Scalable Customer Data Platform (CDP)',
         description: 'Data Engineering (DE), Data Science (DS), and MLOps requirements.',
         bgImage: '/work-1.png',
-        link: 'https://github.com/thanhtan2210/Scalable-Customer-Data-Platform-CDP'
+        link: 'https://github.com/thanhtan2210/Scalable-Customer-Data-Platform-CDP',
+        slug: 'scalable-cdp',
+        longDescription: 'A comprehensive platform designed for large-scale customer data processing (target: 50M users), catering to Data Engineering (DE), Data Science (DS), and MLOps requirements. The project features automated data cleaning, schema normalization, and Data Quality (SLA) validation.',
+        technologies: ['Python', 'Docker', 'FastAPI', 'MinIO', 'MLflow', 'Streamlit', 'Parquet'],
+        features: [
+            'Unified CLI for project lifecycle management',
+            'Hybrid Execution (Docker or Local Mode)',
+            'Robust ETL with automated cleaning and SLA validation',
+            'ML Lifecycle tracking with MLflow',
+            'Interactive Business Dashboard with Streamlit'
+        ]
     },
     {
         title: 'Sentiment Analysis System',
         description: 'NLP',
         bgImage: '/work-2.png',
-        link: 'https://github.com/thanhtan2210/Semtiment_Analysis'
+        link: 'https://github.com/thanhtan2210/Semtiment_Analysis',
+        slug: 'sentiment-analysis',
+        longDescription: 'An end-to-end NLP system for sentiment analysis on large datasets. It includes data preprocessing, model training using state-of-the- art techniques, and deployment as a scalable service.',
+        technologies: ['Python', 'PyTorch', 'HuggingFace', 'FastAPI', 'Docker'],
+        features: [
+            'Custom NLP preprocessing pipeline',
+            'Deep Learning model training and evaluation',
+            'RESTful API for real-time sentiment prediction',
+            'Containerized deployment for scalability'
+        ]
     },
     {
         title: 'Sales Dashboard: Enterprise Data Platform',
         description: 'Data Visualization & BI, ELT pipeline',
         bgImage: '/work-4.png',
-        link: 'https://github.com/thanhtan2210/Sales_Dashboard'
+        link: 'https://github.com/thanhtan2210/Sales_Dashboard',
+        slug: 'sales-dashboard',
+        longDescription: 'A comprehensive Enterprise Data Platform featuring a robust ELT pipeline and interactive BI dashboards. It provides deep insights into sales performance and customer trends.',
+        technologies: ['Python', 'PostgreSQL', 'Streamlit', 'Pandas', 'Docker'],
+        features: [
+            'Automated ELT pipeline from raw data to storage',
+            'Interactive BI Dashboards with real-time updates',
+            'Comprehensive data visualization using Matplotlib/Seaborn',
+            'Optimized database schema for fast querying'
+        ]
     },
     {
         title: 'Power Hub',
         description: 'build an IOT web page',
-        bgImage: './PowerHub.png',
-        link: 'https://github.com/thanhtan2210/PowerHub'
+        bgImage: './PowerHub.png', // Note: keep original relative paths if they work, or use public
+        link: 'https://github.com/thanhtan2210/PowerHub',
+        slug: 'power-hub',
+        longDescription: 'An IoT management platform designed to monitor and control smart power devices. It features real-time data streaming and a responsive user interface for energy consumption tracking.',
+        technologies: ['TypeScript', 'C#', '.NET', 'React', 'MQTT'],
+        features: [
+            'Real-time IoT device monitoring',
+            'Energy consumption analytics and reporting',
+            'Responsive web interface for mobile and desktop',
+            'Secure device authentication and management'
+        ]
     },
     {
         title: 'AI agent chess',
         description: 'Machine Learning basic',
         bgImage: './AI_agent.jpg',
-        link: 'https://github.com/thanhtan2210/ai-agent-chess'
+        link: 'https://github.com/thanhtan2210/ai-agent-chess',
+        slug: 'ai-chess',
+        longDescription: 'An AI-powered chess engine built to demonstrate core Machine Learning and Search algorithm concepts. It includes various difficulty levels and an interactive board.',
+        technologies: ['Python', 'Minimax', 'Alpha-Beta Pruning', 'Pygame'],
+        features: [
+            'Minimax algorithm with Alpha-Beta pruning',
+            'Interactive graphical user interface',
+            'Multiple difficulty levels',
+            'Move validation and game state management'
+        ]
     },
     {
         title: 'Hotel Management System',
         description: 'Web Development',
         bgImage: './Hotel_managment.png',
-        link: 'https://github.com/thanhtan2210/hotel-management-system'
+        link: 'https://github.com/thanhtan2210/hotel-management-system',
+        slug: 'hotel-management',
+        longDescription: 'A full-featured management system for hotels, streamlining booking, room management, and guest services. Built with a focus on usability and scalability.',
+        technologies: ['Python', 'Django', 'React', 'TypeScript', 'PostgreSQL'],
+        features: [
+            'Comprehensive booking and reservation system',
+            'Room availability and status tracking',
+            'Guest profile and history management',
+            'Automated billing and invoice generation'
+        ]
     }
 ]
 
