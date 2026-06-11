@@ -43,7 +43,7 @@ const About = ({ isDarkMode }) => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className='flex-1'>
                     <p>
-                        I am a Data Engineer & MLOps Specialist dedicated to building high-performance data architectures and automated machine learning workflows. With a strong foundation in designing scalable ETL pipelines and optimizing cloud data warehouses, I specialize in bridging the gap between raw data and production-ready systems. My goal is to engineer robust, reliable, and efficient data platforms that empower organizations to leverage their data at scale.
+                        As a Data Engineer, I build the infrastructure that powers data-driven decisions — from ETL pipelines and data warehouses to production MLOps systems. I focus on designing scalable, reliable data platforms using modern cloud-native tools.
                     </p>
 
                     <motion.ul

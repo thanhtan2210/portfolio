@@ -3,7 +3,7 @@ const fs = require('fs');
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Optional: Add to .env to avoid rate limits
 const REPOS = [
     'thanhtan2210/Scalable-Customer-Data-Platform-CDP',
-    'thanhtan2210/Semtiment_Analysis',
+    'thanhtan2210/Sentiment-Analysis-System',
     'thanhtan2210/Sales_Dashboard',
     'thanhtan2210/PowerHub',
     'thanhtan2210/ai-agent-chess',

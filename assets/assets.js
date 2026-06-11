@@ -91,38 +91,6 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'NYC Travel Demand Data Warehouse',
-        description: 'Data Warehouse, Polars, BigQuery, XGBoost',
-        bgImage: '/work-1.png',
-        link: 'https://github.com/thanhtan2210/NYC-Travel-Demand-Data-Warehouse',
-        slug: 'nyc-travel-dwh',
-        longDescription: 'A production-grade data warehouse for NYC travel demand prediction, built on Google BigQuery using Kimball star schema methodology. Features a Polars-based ETL pipeline processing multi-source NYC datasets, OLAP-optimized fact/dimension tables, and an XGBoost forecasting model achieving R²=0.96. Includes lag features, cyclical time encoding, and model comparison across XGBoost, Random Forest, and LSTM.',
-        technologies: ['Python', 'Polars', 'BigQuery', 'XGBoost', 'dbt', 'Kimball Modeling', 'OLAP'],
-        features: [
-            'R²=0.96 accuracy for demand forecasting',
-            'Star schema with optimized fact and dimension tables',
-            'High-performance Polars-based ETL pipeline',
-            'Model comparison across XGBoost, Random Forest, and LSTM',
-            'Automated lag feature engineering and cyclical time encoding'
-        ]
-    },
-    {
-        title: 'Movie Recommendation MLOps System',
-        description: 'MLOps, RAG, Groq, MLflow, DagsHub',
-        bgImage: '/work-2.png',
-        link: 'https://github.com/thanhtan2210/Movie-Recommendation-MLOps',
-        slug: 'movie-recommendation-mlops',
-        longDescription: 'An end-to-end MLOps pipeline for personalized movie recommendations using RAG architecture. Features a multi-stage retrieval system with vector search and a Pseudo-Tower reranker for precision optimization. Integrates an LLM Agent powered by Groq/Llama-3.3-70B for natural language interaction. Full ML lifecycle tracked via MLflow, with data stored on DagsHub and Cloudflare R2. Deployed as an interactive Streamlit app on Hugging Face Spaces.',
-        technologies: ['Python', 'RAG', 'Groq', 'Llama-3.3-70B', 'MLflow', 'DagsHub', 'Cloudflare R2', 'Streamlit', 'HuggingFace'],
-        features: [
-            'Multi-stage retrieval system with Pseudo-Tower reranker',
-            'LLM Agent powered by Groq/Llama-3.3-70B',
-            'Full ML lifecycle tracking with MLflow',
-            'Scalable data storage on DagsHub and Cloudflare R2',
-            'Interactive deployment on Hugging Face Spaces'
-        ]
-    },
-    {
         title: 'Scalable Customer Data Platform (CDP)',
         description: 'Data Engineering, MLOps, 50M User Target',
         bgImage: '/work-3.png',
@@ -142,7 +110,7 @@ export const workData = [
         title: 'Real-time Sentiment Analysis Pipeline',
         description: 'Big Data, Spark Streaming, Kafka',
         bgImage: '/work-4.png',
-        link: 'https://github.com/thanhtan2210/Semtiment_Analysis',
+        link: 'https://github.com/thanhtan2210/Sentiment-Analysis-System',
         slug: 'sentiment-analysis',
         longDescription: 'An industrial-grade sentiment analysis pipeline designed for real-time social media monitoring. Built with a decoupled architecture, it uses Kafka for data ingestion and Apache Spark Streaming for vectorized inference. It achieves 40%+ reduction in processing latency through optimized data structures and runtime schema validation with Pydantic.',
         technologies: ['Python', 'Apache Spark', 'Kafka', 'HuggingFace', 'FastAPI', 'Docker'],
@@ -152,6 +120,40 @@ export const workData = [
             'Robust data governance with Pydantic validation',
             'Scalable Kafka-based ingestion layer',
             'Decoupled, modular architecture for fault tolerance'
+        ]
+    },
+    {
+        title: 'Movie Recommendation MLOps System',
+        description: 'MLOps, RAG, LLM, Groq, Vector Search',
+        bgImage: '/work-5.png',
+        link: 'https://github.com/thanhtan2210/Big-Data-MLOps-System',
+        slug: 'movie-mlops',
+        longDescription: 'An end-to-end MLOps pipeline for personalized movie recommendations using RAG architecture. Features a multi-stage retrieval system with vector search and a Pseudo-Tower reranker for precision optimization. Integrates an LLM Agent powered by Groq/Llama-3.3-70B for natural language interaction. Full ML lifecycle tracked via MLflow, with data stored on DagsHub and Cloudflare R2. Deployed as an interactive Streamlit app on Hugging Face Spaces.',
+        technologies: ['Python', 'RAG', 'Groq', 'Llama-3.3-70B', 'MLflow', 'DagsHub', 'Cloudflare R2', 'Streamlit', 'HuggingFace'],
+        features: [
+            'Multi-stage retrieval system with vector search',
+            'Pseudo-Tower reranker for precision optimization',
+            'LLM Agent powered by Groq/Llama-3.3-70B',
+            'MLflow lifecycle tracking',
+            'DagsHub + Cloudflare R2 scalable storage',
+            'Interactive Streamlit + Hugging Face deployment'
+        ]
+    },
+    {
+        title: 'NYC Data Warehouse & DSS',
+        description: 'Data Warehouse, BigQuery, Star Schema, XGBoost',
+        bgImage: '/work-6.png',
+        link: 'https://github.com/thanhtan2210/DW-and-DSS-for-Travel-Demand-Predicttion',
+        slug: 'nyc-data-warehouse',
+        longDescription: 'A production-grade data warehouse for NYC travel demand prediction, built on Google BigQuery using Kimball star schema methodology. Features a Polars-based ETL pipeline processing multi-source NYC datasets, OLAP-optimized fact/dimension tables, and an XGBoost forecasting model achieving R²=0.96. Includes lag features, cyclical time encoding, and model comparison across XGBoost, Random Forest, and LSTM.',
+        technologies: ['Python', 'Polars', 'BigQuery', 'XGBoost', 'Kimball Modeling', 'OLAP', 'dbt'],
+        features: [
+            'Kimball star schema design for OLAP optimization',
+            'Polars-based high-performance ETL pipeline',
+            'R²=0.96 accuracy with XGBoost forecasting',
+            'OLAP-optimized fact and dimension tables',
+            'Multi-model comparison (XGBoost, Random Forest, LSTM)',
+            'Lag features and cyclical time encoding'
         ]
     }
 ]
@@ -186,7 +188,7 @@ export const serviceData = [
 export const infoList = [
     { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages & Tools', description: 'Python, SQL, Polars, Airflow, BigQuery, MLflow' },
     { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Bachelor in Computer Science' },
-    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Focus', description: 'Data Engineering & MLOps Infrastructure' }
+    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built 5+ data engineering and MLOps projects' }
 ];
 
 export const toolsData = [
