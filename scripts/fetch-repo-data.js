@@ -7,7 +7,11 @@ const REPOS = [
     'thanhtan2210/Sales_Dashboard',
     'thanhtan2210/PowerHub',
     'thanhtan2210/ai-agent-chess',
-    'thanhtan2210/hotel-management-system'
+    'thanhtan2210/hotel-management-system',
+    'thanhtan2210/DW-and-DSS-for-Travel-Demand-Predicttion',
+    'thanhtan2210/Big-Data-MLOps-System',
+    'thanhtan2210/DBMS-Application',
+    'thanhtan2210/Collect-and-predict-air-plane-ticket-price---Data-Mining-Assignment'
 ];
 
 const IMPORTANT_FILES = [
@@ -49,7 +53,7 @@ async function fetchRawFile(owner, repo, path, branch = 'main') {
 async function getRepoData(fullRepoName) {
     console.log(`Fetching data for ${fullRepoName}...`);
     const [owner, repo] = fullRepoName.split('/');
-    
+
     // 1. Repo Info
     const repoInfo = await fetchGitHub(`https://api.github.com/repos/${owner}/${repo}`);
     if (!repoInfo) return null;

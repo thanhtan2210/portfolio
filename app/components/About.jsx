@@ -43,7 +43,7 @@ const About = ({ isDarkMode }) => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className='flex-1'>
                     <p>
-                        As a Data & AI Specialist, I excel at turning raw data into measurable business value. I am passionate about uncovering hidden patterns and building end-to-end machine learning pipelines that solve critical challenges. Leveraging my expertise in data modeling, statistical analysis, and deep learning, I develop robust solutions that empower data-informed decision-making and drive strategic growth.
+                        I am a Data Engineer & MLOps Specialist dedicated to building high-performance data architectures and automated machine learning workflows. With a strong foundation in designing scalable ETL pipelines and optimizing cloud data warehouses, I specialize in bridging the gap between raw data and production-ready systems. My goal is to engineer robust, reliable, and efficient data platforms that empower organizations to leverage their data at scale.
                     </p>
 
                     <motion.ul

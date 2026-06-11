@@ -27,7 +27,7 @@ const Header = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className='text-3xl sm:text-6xl lg:text-[66px] font-Ovo'>
-                Data & Software Engineer
+                Data Engineer & MLOps Specialist
             </motion.h1>
 
             <motion.p
@@ -35,7 +35,7 @@ const Header = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className='max-w-2xl mx-auto font-Ovo'>
-                Ho Chi Minh City-based Data and Software Engineer. I specialize in building robust data pipelines, deploying scalable ML models, and leveraging AI to solve real-world business problems.
+                I build scalable data pipelines, data warehouses, and MLOps infrastructure. Focused on end-to-end data systems from ingestion to production deployment.
             </motion.p>
 
             <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
