@@ -19,12 +19,17 @@ const Contact = () => {
         setResult("Sending....");
 
         try {
+            const userName = event.target.name.value;
+            const userEmail = event.target.email.value;
+            const userMessage = event.target.message.value;
+
             const formData = {
                 to_email: "thanhtanphan011022@gmail.com",
-                from_name: event.target.name.value,
-                from_email: event.target.email.value,
-                message: event.target.message.value,
-                source: "Portfolio"
+                from_name: userName,
+                from_email: userEmail,
+                message: userMessage,
+                source: "Portfolio",
+                email_subject: `[Portfolio] Message from ${userName} (${userEmail})`
             };
 
             const response = await emailjs.send(
