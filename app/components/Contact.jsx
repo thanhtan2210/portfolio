@@ -1,32 +1,46 @@
+'use client';
+
 import Image from 'next/image';
 import { assets } from '@/assets/assets'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'motion/react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
 
     const [result, setResult] = useState("");
 
+    useEffect(() => {
+        emailjs.init("s5O64YEgOYt_XEJH-");
+    }, []);
+
     const onSubmit = async (event) => {
         event.preventDefault();
         setResult("Sending....");
-        const formData = new FormData(event.target);
 
-        formData.append("access_key", "fa73cfae-ae15-4200-b2d7-7d0f107f14da");
+        try {
+            const formData = {
+                to_email: "thanhtanphan011022@gmail.com",
+                from_name: event.target.name.value,
+                from_email: event.target.email.value,
+                message: event.target.message.value,
+                source: "Portfolio"
+            };
 
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        });
+            const response = await emailjs.send(
+                "service_fmx67j2",
+                "template_cr9b1xl",
+                formData
+            );
 
-        const data = await response.json();
-
-        if (data.success) {
-            setResult("Form Submitted Successfully");
-            event.target.reset();
-        } else {
-            console.log("Error", data);
-            setResult(data.message);
+            if (response.status === 200) {
+                setResult("✓ Message sent successfully!");
+                event.target.reset();
+                setTimeout(() => setResult(""), 5000);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            setResult("❌ Failed to send message. Please try again.");
         }
     };
 
@@ -91,7 +105,7 @@ const Contact = () => {
                     Submit now <Image src={assets.right_arrow_white} alt='' className='w-4' />
                 </motion.button>
 
-                <p className='w-4'>
+                <p className='text-center mt-4 text-sm'>
                     {result}
                 </p>
             </motion.form>
