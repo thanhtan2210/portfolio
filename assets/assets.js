@@ -91,20 +91,21 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Scalable Customer Data Platform (CDP)',
-        description: 'Data Engineering, MLOps, 50M User Target',
+        title: 'Scalable Customer Data Platform (CDP) — v2',
+        description: 'Decoupling data logic from model code to build truly reusable ML infrastructure.',
         bgImage: '/work-3.png',
         link: 'https://github.com/thanhtan2210/Scalable-Customer-Data-Platform-CDP',
         slug: 'scalable-cdp',
-        longDescription: 'A high-performance Customer Data Platform designed to process and analyze data for up to 50 million users. It implements advanced ETL workflows, automated data cleaning, and schema normalization to ensure data quality (SLA). The system integrates MLflow for experiment tracking and FastAPI for serving predictive models like churn analysis.',
-        technologies: ['Python', 'Docker', 'FastAPI', 'MinIO', 'MLflow', 'Streamlit', 'Parquet'],
+        longDescription: 'Most ML pipelines are built as "one-offs" for specific datasets, making them fragile and hard to scale. After achieving a 263x ROI with a hardcoded v1 pipeline, I am rebuilding the system into a generic, schema-agnostic platform that can ingest any tabular data and automatically generate production-ready insights.',
+        technologies: ['Python', 'FastAPI', 'Optuna', 'MLflow', 'Supabase', 'Cloudflare R2', 'Pandera', 'Docker', 'Airflow', 'Streamlit'],
         features: [
-            'Optimized for 50M user scale processing',
-            'Automated data cleaning and SLA validation',
-            'Unified CLI for project lifecycle management',
-            'ML Lifecycle tracking with MLflow',
-            'Hybrid Execution (Docker or Local Mode)'
-        ]
+            'Generic Profiling Engine: 3-layer profiling system (Statistical, Semantic, and LLM-based)',
+            'Automated Feature Engineering: Transform Registry and schema validation using Pandera',
+            'AutoML Orchestration: Integrated Optuna for hyperparameter optimization and MLflow tracking',
+            'Cloud-Native Storage: Cloudflare R2 for artifacts and Supabase for metadata management'
+        ],
+        impact: '93.5% Accuracy & 0.99 ROC-AUC on Telco churn (v1 baseline); Estimated 263x ROI; Integrated A/B Testing service.',
+        challenges: 'Handling edge cases in "dirty" CSVs. Learned that robust schema validation (Pandera) is more critical for production stability than the ML model itself.'
     },
     {
         title: 'Real-time Sentiment Analysis Pipeline',
@@ -120,41 +121,44 @@ export const workData = [
             'Robust data governance with Pydantic validation',
             'Scalable Kafka-based ingestion layer',
             'Decoupled, modular architecture for fault tolerance'
-        ]
+        ],
+        impact: '40%+ reduction in processing latency; Robust data governance implemented.',
+        challenges: 'Managing real-time data consistency and handling malformed source data at scale.'
     },
     {
-        title: 'Movie Recommendation MLOps System',
-        description: 'MLOps, RAG, LLM, Groq, Vector Search',
+        title: 'Big Data MLOps Movie Recommender System',
+        description: 'Moving beyond black-box recommendations with Explainable AI and high-scale vector search.',
         bgImage: '/work-5.png',
         link: 'https://github.com/thanhtan2210/Big-Data-MLOps-System',
         slug: 'movie-mlops',
-        longDescription: 'An end-to-end MLOps pipeline for personalized movie recommendations using RAG architecture. Features a multi-stage retrieval system with vector search and a Pseudo-Tower reranker for precision optimization. Integrates an LLM Agent powered by Groq/Llama-3.3-70B for natural language interaction. Full ML lifecycle tracked via MLflow, with data stored on DagsHub and Cloudflare R2. Deployed as an interactive Streamlit app on Hugging Face Spaces.',
-        technologies: ['Python', 'RAG', 'Groq', 'Llama-3.3-70B', 'MLflow', 'DagsHub', 'Cloudflare R2', 'Streamlit', 'HuggingFace'],
+        longDescription: 'Standard recommendation systems often fail the "Why?" test—they suggest items but cannot explain the reasoning. I built a system that combines the speed of vector search (LanceDB) with the reasoning capabilities of LLMs (Llama-3.3) to provide personalized, explainable recommendations at scale.',
+        technologies: ['Python', 'LanceDB', 'SentenceTransformer', 'Groq (Llama-3.3-70b)', 'RAG', 'Streamlit', 'Cloudflare R2', 'MLflow'],
         features: [
-            'Multi-stage retrieval system with vector search',
-            'Pseudo-Tower reranker for precision optimization',
-            'LLM Agent powered by Groq/Llama-3.3-70B',
-            'MLflow lifecycle tracking',
-            'DagsHub + Cloudflare R2 scalable storage',
-            'Interactive Streamlit + Hugging Face deployment'
-        ]
+            'Latent Space Enhancement: Injected [Quality] tokens and ratings into text descriptions before encoding',
+            'Pseudo-Tower Personalization: Weighted-average vector calculations for personalized results without complex servers',
+            'Hybrid Reranker: Custom scoring logic (60% Similarity + 30% Popularity + 10% Quality)',
+            'Zero-Downtime Fallback: Smart router falls back from Groq (LLM) to local LanceDB search during rate limits'
+        ],
+        impact: 'Processed 25M records from MovieLens; Deployed production-grade RAG system on zero-cost infrastructure.',
+        challenges: 'Balancing LLM latency with vector search speed. Learned to use Function Calling to make LLMs act as intelligent routers.',
+        demoLink: 'https://huggingface.co/spaces/thanhtanphan/ai-movie-resys'
     },
     {
-        title: 'NYC Data Warehouse & DSS',
-        description: 'Data Warehouse, BigQuery, Star Schema, XGBoost',
+        title: 'NYC Taxi Data Warehouse & Decision Support System',
+        description: 'Architecting high-performance data foundations to turn millions of raw trips into urban mobility insights.',
         bgImage: '/work-6.png',
         link: 'https://github.com/thanhtan2210/DW-and-DSS-for-Travel-Demand-Predicttion',
         slug: 'nyc-data-warehouse',
-        longDescription: 'A production-grade data warehouse for NYC travel demand prediction, built on Google BigQuery using Kimball star schema methodology. Features a Polars-based ETL pipeline processing multi-source NYC datasets, OLAP-optimized fact/dimension tables, and an XGBoost forecasting model achieving R²=0.96. Includes lag features, cyclical time encoding, and model comparison across XGBoost, Random Forest, and LSTM.',
-        technologies: ['Python', 'Polars', 'BigQuery', 'XGBoost', 'Kimball Modeling', 'OLAP', 'dbt'],
+        longDescription: 'Real-world data is often messy, fragmented, and siloed. This project demonstrates a full end-to-end Data Engineering lifecycle: ingesting millions of NYC Taxi records, restructuring them into an optimized Star Schema, and serving predictive analytics for city planning.',
+        technologies: ['Python', 'BigQuery', 'Polars', 'Star Schema', 'XGBoost', 'Random Forest', 'LSTM', 'Streamlit', 'Power BI'],
         features: [
-            'Kimball star schema design for OLAP optimization',
-            'Polars-based high-performance ETL pipeline',
-            'R²=0.96 accuracy with XGBoost forecasting',
-            'OLAP-optimized fact and dimension tables',
-            'Multi-model comparison (XGBoost, Random Forest, LSTM)',
-            'Lag features and cyclical time encoding'
-        ]
+            'Star Schema Optimization: Designed Fact_Trips (~50 columns) and Fact_Demand_Hourly feature store',
+            'High-Performance ETL: Built a pipeline using Polars for Parquet processing and BigQuery warehouse',
+            'Hybrid Predictive Modeling: Developed and compared XGBoost, Random Forest, and LSTM models',
+            'Decision Support System (DSS): Streamlit web app and Power BI OLAP dashboard for visualization'
+        ],
+        impact: 'Reduced analytical query time by 60%; Created a unified source of truth for automated ML feature syncing.',
+        challenges: 'Managing millions of records required moving from Pandas to Polars. Data architecture (Star Schema) is as critical as the algorithm.'
     }
 ]
 

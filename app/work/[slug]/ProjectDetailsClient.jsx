@@ -68,7 +68,7 @@ const ProjectDetailsClient = ({ project }) => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 1.1 }}
-                        className='mb-10'
+                        className='mb-8'
                     >
                         <h3 className='text-xl font-Ovo dark:text-white mb-4'>Key Features</h3>
                         <ul className='list-disc list-inside space-y-2 text-gray-700 dark:text-white/80'>
@@ -78,11 +78,42 @@ const ProjectDetailsClient = ({ project }) => {
                         </ul>
                     </motion.div>
 
-                    {/* Action Button */}
+                    {/* Results / Impact */}
+                    {project.impact && (
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 1.2 }}
+                            className='mb-8'
+                        >
+                            <h3 className='text-xl font-Ovo dark:text-white mb-4'>Results / Impact</h3>
+                            <p className='text-gray-700 dark:text-white/80 leading-relaxed'>
+                                {project.impact}
+                            </p>
+                        </motion.div>
+                    )}
+
+                    {/* Challenges & Learnings */}
+                    {project.challenges && (
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 1.3 }}
+                            className='mb-10'
+                        >
+                            <h3 className='text-xl font-Ovo dark:text-white mb-4'>Challenges & Learnings</h3>
+                            <p className='text-gray-700 dark:text-white/80 leading-relaxed'>
+                                {project.challenges}
+                            </p>
+                        </motion.div>
+                    )}
+
+                    {/* Action Buttons */}
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 1.3 }}
+                        transition={{ duration: 0.5, delay: 1.4 }}
+                        className='flex flex-wrap gap-4'
                     >
                         <a 
                             href={project.link} 
@@ -93,6 +124,18 @@ const ProjectDetailsClient = ({ project }) => {
                             View on GitHub
                             <Image src={assets.right_arrow_bold} alt='' className='w-4 dark:invert' />
                         </a>
+
+                        {project.demoLink && (
+                            <a 
+                                href={project.demoLink} 
+                                target='_blank' 
+                                rel='noopener noreferrer'
+                                className='inline-flex items-center gap-2 px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition duration-300 font-Ovo'
+                            >
+                                Live Demo
+                                <Image src={assets.right_arrow_bold} alt='' className='w-4 invert dark:invert-0' />
+                            </a>
+                        )}
                     </motion.div>
                 </div>
 
