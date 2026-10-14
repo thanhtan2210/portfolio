@@ -41,7 +41,7 @@ const WorkPage = () => {
                 All My Work
             </motion.h2>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 my-10 gap-5 dark:text-black'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-10 gap-5 dark:text-black'>
                 {workData.map((project, index) => (
                     <WorkCard key={index} project={project} index={index} />
                 ))}

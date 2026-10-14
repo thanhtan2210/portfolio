@@ -6,13 +6,8 @@ import edu_icon_dark from './edu-icon-dark.png';
 import project_icon from './project-icon.png';
 import project_icon_dark from './project-icon-dark.png';
 import vscode from './vscode.png';
-import firebase from './firebase.png';
-import figma from './figma.png';
 import git from './git.png';
-import mongodb from './mongodb.png';
 import right_arrow_white from './right-arrow-white.png';
-import logo from './logo.png';
-import logo_dark from './logo_dark.png';
 import mail_icon from './mail_icon.png';
 import mail_icon_dark from './mail_icon_dark.png';
 import profile_img from './profile-img.png';
@@ -27,21 +22,11 @@ import menu_black from './menu-black.png';
 import menu_white from './menu-white.png';
 import close_black from './close-black.png';
 import close_white from './close-white.png';
-import web_icon from './web-icon.png';
-import mobile_icon from './mobile-icon.png';
-import ui_icon from './ui-icon.png';
-import graphics_icon from './graphics-icon.png';
 import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
 import python from './python.png';
-import aws from './aws.png';
-import ml_icon from './ml_icon.png';
-import analysis_icon from './analysis_icon.png';
-import dashboard_icon from './dashboard_icon.png';
-import ai_solution_icon from './ai_solution_icon.png';
-import backend_icon from './backend_icon.png';
 
 export const assets = {
     user_image,
@@ -52,13 +37,8 @@ export const assets = {
     project_icon,
     project_icon_dark,
     vscode,
-    firebase,
-    figma,
     git,
-    mongodb,
     right_arrow_white,
-    logo,
-    logo_dark,
     mail_icon,
     mail_icon_dark,
     profile_img,
@@ -73,20 +53,11 @@ export const assets = {
     menu_white,
     close_black,
     close_white,
-    web_icon,
-    mobile_icon,
-    ui_icon,
-    graphics_icon,
     right_arrow,
     send_icon,
     right_arrow_bold,
     right_arrow_bold_dark,
-    python, aws,
-    ml_icon,
-    ai_solution_icon,
-    analysis_icon,
-    dashboard_icon,
-    backend_icon
+    python
 };
 
 export const workData = [
@@ -146,39 +117,12 @@ export const workData = [
     }
 ]
 
-export const serviceData = [
-    {
-        icon: assets.dashboard_icon, // Đổi icon cho phù hợp (ví dụ: database, server)
-        title: 'Data Pipeline & Infrastructure Engineering',
-        description: 'Designing and building robust ETL pipelines and scalable data architectures. I transform, clean, and consolidate raw data into reliable databases to fuel applications and analytics.',
-        link: ''
-    },
-    {
-        icon: assets.backend_icon, // Đổi icon (ví dụ: api, code)
-        title: 'Scalable Backend & Software Systems',
-        description: 'Architecting high-performance backend systems and APIs. I bridge the gap between complex databases and applications to deliver secure, scalable, and seamless software solutions.',
-        link: ''
-    },
-    {
-        icon: assets.ml_icon, // Đổi icon (ví dụ: gear, cloud)
-        title: 'Machine Learning Engineering & MLOps',
-        description: 'Bridging the gap between data science and production. I optimize, scale, and deploy machine learning models into live environments, ensuring reliable performance and automated workflows.',
-        link: ''
-    },
-    {
-        icon: assets.ai_solution_icon,
-        title: 'End-to-End AI Integration',
-        description: 'Developing and seamlessly integrating AI capabilities into existing software ecosystems. From intelligent APIs to automated data platforms, I build solutions that drive real business value.',
-        link: ''
-    },
-];
-
 export const infoList = [
-    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages & Tools', description: 'Python, SQL, Polars, Airflow, BigQuery, MLflow' },
-    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Bachelor in Computer Science' },
-    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built 5+ data engineering and MLOps projects' }
+    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages & Tools', description: 'Python, SQL, DuckDB, XGBoost, MLflow, Docker' },
+    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'B.Sc. Computer Science, HCMUT (2022–2027)' },
+    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Experience', description: 'Backend Developer Intern, MyTegami.win (2025)' }
 ];
 
 export const toolsData = [
-    assets.vscode, assets.aws, assets.mongodb, assets.git, assets.python
+    assets.vscode, assets.git, assets.python
 ];

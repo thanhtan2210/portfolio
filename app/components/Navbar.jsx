@@ -31,12 +31,11 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Image src={assets.header_bg_color} alt='' className='w-full' />
             </div>
             <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScrolled ? "bg-white bg-opacity-50 backdrop-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20" : ""}`}>
-                <Image src={isDarkMode ? assets.logo_dark : assets.logo} alt="logo" className="w-32" />
+                <p className="font-ovo text-2xl">Phan Thanh Tan</p>
 
                 <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScrolled ? "" : "bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/50 dark:bg-transparent"}`}>
                     <li><a href="#top" className="font-Ovo">Home</a></li>
                     <li><a href="#about" className="font-Ovo">About me</a></li>
-                    <li><a href="#service" className="font-Ovo">Services</a></li>
                     <li><a href="#work" className="font-Ovo">My Work</a></li>
                     <li><a href="#contact" className="font-Ovo">Contact me</a></li>
                 </ul>
@@ -67,7 +66,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
                     <li><a onClick={closeMenu} href="#top" className="font-Ovo">Home</a></li>
                     <li><a onClick={closeMenu} href="#about" className="font-Ovo">About me</a></li>
-                    <li><a onClick={closeMenu} href="#service" className="font-Ovo">Services</a></li>
                     <li><a onClick={closeMenu} href="#work" className="font-Ovo">My Work</a></li>
                     <li><a onClick={closeMenu} href="#contact" className="font-Ovo">Contact me</a></li>
                 </ul>

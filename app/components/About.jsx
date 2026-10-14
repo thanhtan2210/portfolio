@@ -42,8 +42,8 @@ const About = ({ isDarkMode }) => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className='flex-1'>
-                    <p>
-                        As a Data Engineer, I build the infrastructure that powers data-driven decisions — from ETL pipelines and data warehouses to production MLOps systems. I focus on designing scalable, reliable data platforms using modern cloud-native tools.
+                    <p className='mb-10'>
+                        I am looking for a Data Engineer, Data Analyst or Machine Learning internship. My projects use public data, run from one command, and list their limitations next to their results. In 2025 I also worked as a backend intern on an AI cover-letter product.
                     </p>
 
                     <motion.ul

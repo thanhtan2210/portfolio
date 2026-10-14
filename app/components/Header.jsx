@@ -11,7 +11,7 @@ const Header = () => {
                 whileInView={{ scale: 1 }}
                 transition={{ duration: 0.8, type: 'string', stiffness: 100 }}
             >
-                <Image src={assets.profile_img} alt='' className='rounded-full w-32' />
+                <Image src={assets.profile_img} alt='Phan Thanh Tan' className='rounded-full w-32' />
             </motion.div>
 
             <motion.h3
@@ -27,7 +27,7 @@ const Header = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className='text-3xl sm:text-6xl lg:text-[66px] font-Ovo'>
-                Data Engineer | MLOps
+                Data Engineering & Machine Learning
             </motion.h1>
 
             <motion.p
@@ -35,7 +35,7 @@ const Header = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className='max-w-2xl mx-auto font-Ovo'>
-                I build scalable data pipelines, data warehouses, and MLOps infrastructure. Focused on end-to-end data systems from ingestion to production deployment.
+                Final-year Computer Science student at HCMUT (Data Engineering & Big Data). I build data pipelines and ML models end to end, and I report every result against a simple baseline with confidence intervals.
             </motion.p>
 
             <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>

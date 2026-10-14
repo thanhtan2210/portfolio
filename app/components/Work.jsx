@@ -33,7 +33,7 @@ const Work = ({ isDarkMode }) => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                Data Engineer & MLOps Specialist specializing in building scalable data pipelines, optimizing cloud data warehouses, and deploying robust MLOps infrastructure. I focus on engineering end-to-end data systems that bridge the gap between ingestion and production deployment.
+                Three projects, each with a baseline, confidence intervals and a list of limitations. Every number below comes from the project's README.
             </motion.p>
 
             <motion.div
