@@ -78,7 +78,39 @@ export const workData = [
             'GitHub Actions workflow, started by hand, that rebuilds one month from the TLC files and compares it with the committed data'
         ],
         impact: 'On three held-out months (May–July 2026) XGBoost lowers MAE by 39.8% to 40.9% against a same-hour-last-week baseline (for example 22.44 → 13.25 trips per zone-hour in July), with WAPE 9.6–10.4% against 16.1–17.6%. Intervals come from a paired block bootstrap over days.',
-        challenges: 'Low-volume zones are poorly predicted in relative terms (EWR: WAPE 75–81%). 25.5M FHV trips have no pickup zone and are left out of the mart. A possible double count between yellow and Uber trips was checked on one day only.'
+        challenges: 'Low-volume zones are poorly predicted in relative terms (EWR: WAPE 75–81%). 25.5M FHV trips have no pickup zone and are left out of the mart. A possible double count between yellow and Uber trips was checked on one day only.',
+        stats: [
+            { value: '376M', label: 'trip records' },
+            { value: '263', label: 'taxi zones' },
+            { value: '−40%', label: 'MAE vs same-hour-last-week baseline (39.8–40.9%)' },
+            { value: '9.6–10.4%', label: 'WAPE (baseline 16.1–17.6%)' }
+        ],
+        pipeline: [
+            { title: 'TLC parquet', note: '376M rows, 4 services' },
+            { title: 'DuckDB star schema', note: 'two columns read per file' },
+            { title: 'Hourly zone mart', note: '2,688,912 zone-hours' },
+            { title: 'XGBoost', note: 'next-hour forecast' },
+            { title: 'Streamlit', note: '3 pages' }
+        ],
+        chart: {
+            type: 'pairedBars',
+            title: 'MAE per test month (trips per zone-hour, lower is better)',
+            caption: 'Test months May–July 2026, each predicted once. Baseline: the same zone at the same hour one week earlier.',
+            sourceUrl: 'https://github.com/thanhtan2210/nyc-taxi-demand-forecasting/blob/main/README.md?plain=1#L27-L34',
+            sourceLabel: 'README.md, forecast accuracy table',
+            data: {
+                unit: '',
+                series: [
+                    { name: 'Same hour last week', role: 'baseline' },
+                    { name: 'XGBoost', role: 'main' }
+                ],
+                groups: [
+                    { label: 'May 2026', values: [21.94, 13.00] },
+                    { label: 'Jun 2026', values: [22.48, 13.54] },
+                    { label: 'Jul 2026', values: [22.44, 13.25] }
+                ]
+            }
+        }
     },
     {
         title: 'Movie Recommender MLOps',
@@ -97,7 +129,47 @@ export const workData = [
             'Docker image that holds the model and no credentials'
         ],
         impact: 'On July 2019, a month no modelling decision had looked at: HitRate@10 27.7% against 22.4% for popularity, NDCG@10 0.0831 against 0.0711 (paired difference +0.0121, 95% CI [+0.0044, +0.0193], 1,475 users). The API answers in about 5 ms (median, measured from the client).',
-        challenges: 'Accuracy costs variety: the champion recommends 439 distinct movies across 1,475 users. Plain PureSVD did not beat popularity at first; the training window did most of the work. Evaluating each month\'s champion over several months is still planned.'
+        challenges: 'Accuracy costs variety: the champion recommends 439 distinct movies across 1,475 users. Plain PureSVD did not beat popularity at first; the training window did most of the work. Evaluating each month\'s champion over several months is still planned.',
+        stats: [
+            { value: '25M', label: 'MovieLens 25M dataset' },
+            { value: '27.7%', label: 'HitRate@10 (popularity 22.4%)' },
+            { value: '+0.0121', label: 'NDCG@10 vs popularity (95% CI +0.0044 to +0.0193)' },
+            { value: '~5 ms', label: 'median API latency' }
+        ],
+        pipeline: [
+            { title: 'MovieLens on R2', note: 'raw and prepared data' },
+            { title: 'Prepare', note: 'time split' },
+            { title: 'Gate', note: 'challenger vs champion, 95% CI' },
+            { title: 'MLflow registry', note: 'champion alias' },
+            { title: 'FastAPI in Docker', note: 'serves the champion' }
+        ],
+        chart: {
+            type: 'intervals',
+            title: 'July 2019, 1,475 users, 95% bootstrap intervals',
+            caption: 'Dot: value. Bar: 95% bootstrap interval over users (1,000 resamples). July 2019 was not used for any modelling decision.',
+            sourceUrl: 'https://github.com/thanhtan2210/movie-recommender-mlops/blob/main/reports/2019-07-01/production.json',
+            sourceLabel: 'reports/2019-07-01/production.json',
+            data: {
+                unit: '%',
+                axis: { min: 0, max: 35, ticks: [0, 5, 10, 15, 20, 25, 30, 35] },
+                metrics: [
+                    {
+                        label: 'HitRate@10',
+                        rows: [
+                            { name: 'Champion', role: 'main', value: 27.7, low: 25.4, high: 30.1 },
+                            { name: 'Popularity', role: 'baseline', value: 22.4, low: 20.3, high: 24.5 }
+                        ]
+                    },
+                    {
+                        label: 'Long-tail share',
+                        rows: [
+                            { name: 'Champion', role: 'main', value: 26.5, low: 25.0, high: 27.9 },
+                            { name: 'Popularity', role: 'baseline', value: 17.2, low: 16.8, high: 17.6 }
+                        ]
+                    }
+                ]
+            }
+        }
     },
     {
         title: 'Flight Price Prediction & Quote Assessment',
@@ -115,7 +187,38 @@ export const workData = [
             '80% price range from two XGBoost quantile models calibrated with conformalized quantile regression'
         ],
         impact: 'R² 0.872 and MAE 678 INR on a hold-out test set; the 80% price range contains 78.8% of test prices. On the same airline and route, a one-stop flight cost a median 3,038 INR more than a non-stop one (95% CI 964 to 4,410; 10 groups).',
-        challenges: 'Confounding: across airlines, the Jet Airways fare without a meal looks dearer, but on the same airline and route it is 3,436 INR cheaper (95% CI 1,830 to 6,132; only 6 groups). April has only 1,078 flights, and airlines with fewer than 30 flights are not analysed.'
+        challenges: 'Confounding: across airlines, the Jet Airways fare without a meal looks dearer, but on the same airline and route it is 3,436 INR cheaper (95% CI 1,830 to 6,132; only 6 groups). April has only 1,078 flights, and airlines with fewer than 30 flights are not analysed.',
+        stats: [
+            { value: '0.872', label: 'R² on test' },
+            { value: '678 INR', label: 'MAE' },
+            { value: '78.8%', label: 'inside the 80% range' },
+            { value: '+3,038 INR', label: 'median one-stop premium' }
+        ],
+        pipeline: [
+            { title: 'Raw CSV', note: '10,462 fares after cleaning' },
+            { title: 'clean_raw + build_features', note: 'one function for train and serving' },
+            { title: 'XGBoost price + quantile models', note: 'CQR, 80% price range' },
+            { title: 'assess_quote', note: 'cheap, fair or expensive' },
+            { title: 'Streamlit app', note: 'predict and assess a quote' }
+        ],
+        chart: {
+            type: 'coverage',
+            title: 'Share of test fares inside the 80% price range, by price quartile',
+            caption: 'Two XGBoost quantile models calibrated with conformalized quantile regression. Dashed line: 80% target.',
+            sourceUrl: 'https://github.com/thanhtan2210/flight-price-prediction/blob/main/models/interval_metrics.json',
+            sourceLabel: 'models/interval_metrics.json',
+            data: {
+                unit: '%',
+                target: 80,
+                xTitle: 'Test price range (INR)',
+                bars: [
+                    { from: '1,759', to: '5,192', value: 82.1, n: 525 },
+                    { from: '5,192', to: '8,040', value: 74.5, n: 526 },
+                    { from: '8,040', to: '11,934', value: 79.4, n: 519 },
+                    { from: '11,934', to: '54,826', value: 79.2, n: 523 }
+                ]
+            }
+        }
     }
 ]
 
