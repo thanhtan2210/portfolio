@@ -91,74 +91,58 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Scalable Customer Data Platform (CDP) — v2',
-        description: 'Decoupling data logic from model code to build truly reusable ML infrastructure.',
-        bgImage: '/work-3.png',
-        link: 'https://github.com/thanhtan2210/Scalable-Customer-Data-Platform-CDP',
-        slug: 'scalable-cdp',
-        longDescription: 'Most ML pipelines are built as "one-offs" for specific datasets, making them fragile and hard to scale. After achieving a 263x ROI with a hardcoded v1 pipeline, I am rebuilding the system into a generic, schema-agnostic platform that can ingest any tabular data and automatically generate production-ready insights.',
-        technologies: ['Python', 'FastAPI', 'Optuna', 'MLflow', 'Supabase', 'Cloudflare R2', 'Pandera', 'Docker', 'Airflow', 'Streamlit'],
+        title: 'NYC Taxi Demand Forecasting',
+        description: 'Next-hour pickups for 263 zones from 376M trip records',
+        bgImage: '/work/nyc.png',
+        link: 'https://github.com/thanhtan2210/nyc-taxi-demand-forecasting',
+        demoLink: 'https://nyc-taxi-demand-forecasting-t.streamlit.app/',
+        slug: 'nyc-taxi-demand-forecasting',
+        longDescription: 'A fleet dispatcher or a transport agency wants to know, one hour ahead, how many rides will be picked up in each of the 263 NYC taxi zones. DuckDB reads 376 million public TLC trip records from four services (yellow, green, FHV and high-volume FHV, June 2025 – July 2026) straight from the TLC URLs, builds a star schema and an hourly zone mart, and one global XGBoost model forecasts the next hour from lagged demand and calendar features.',
+        technologies: ['Python', 'DuckDB', 'SQL', 'XGBoost', 'Streamlit', 'GitHub Actions'],
         features: [
-            'Generic Profiling Engine: 3-layer profiling system (Statistical, Semantic, and LLM-based)',
-            'Automated Feature Engineering: Transform Registry and schema validation using Pandera',
-            'AutoML Orchestration: Integrated Optuna for hyperparameter optimization and MLflow tracking',
-            'Cloud-Native Storage: Cloudflare R2 for artifacts and Supabase for metadata management'
+            'Star schema in DuckDB that reads only two columns of each parquet file over HTTP',
+            'Data-quality accounting for every file: 350.8M of 376.4M trips (93.2%) could be placed on a zone',
+            'Leakage check: lag features recomputed independently in SQL; removing the short-term lags raises validation WAPE from 9.4% to 11.3%',
+            'Three-page Streamlit app: Overview, Patterns and Forecast',
+            'GitHub Actions workflow, started by hand, that rebuilds one month from the TLC files and compares it with the committed data'
         ],
-        impact: '93.5% Accuracy & 0.99 ROC-AUC on Telco churn (v1 baseline); Estimated 263x ROI; Integrated A/B Testing service.',
-        challenges: 'Handling edge cases in "dirty" CSVs. Learned that robust schema validation (Pandera) is more critical for production stability than the ML model itself.'
+        impact: 'On three held-out months (May–July 2026) XGBoost lowers MAE by 39.8% to 40.9% against a same-hour-last-week baseline (for example 22.44 → 13.25 trips per zone-hour in July), with WAPE 9.6–10.4% against 16.1–17.6%. Intervals come from a paired block bootstrap over days.',
+        challenges: 'Low-volume zones are poorly predicted in relative terms (EWR: WAPE 75–81%). 25.5M FHV trips have no pickup zone and are left out of the mart. A possible double count between yellow and Uber trips was checked on one day only.'
     },
     {
-        title: 'Real-time Sentiment Analysis Pipeline',
-        description: 'Big Data, Spark Streaming, Kafka',
-        bgImage: '/work-4.png',
-        link: 'https://github.com/thanhtan2210/Sentiment-Analysis-System',
-        slug: 'sentiment-analysis',
-        longDescription: 'An industrial-grade sentiment analysis pipeline designed for real-time social media monitoring. Built with a decoupled architecture, it uses Kafka for data ingestion and Apache Spark Streaming for vectorized inference. It achieves 40%+ reduction in processing latency through optimized data structures and runtime schema validation with Pydantic.',
-        technologies: ['Python', 'Apache Spark', 'Kafka', 'HuggingFace', 'FastAPI', 'Docker'],
+        title: 'Movie Recommender MLOps',
+        description: 'Monthly retraining with a statistical promotion gate',
+        bgImage: '/work/movie.png',
+        link: 'https://github.com/thanhtan2210/movie-recommender-mlops',
+        slug: 'movie-recommender-mlops',
+        longDescription: 'MovieLens 25M, split by time. A truncated SVD of the user × movie "liked" matrix, blended with recent popularity, is compared with popularity alone. One command runs a monthly cycle: prepare the data, compare challenger and champion on the last 30 days of training data, promote only if the challenger is better with 95% confidence, refit the winner, register it in MLflow and score it on the following 30 days. The champion is served by FastAPI in a Docker image.',
+        technologies: ['Python', 'scikit-learn', 'MLflow', 'DagsHub', 'Cloudflare R2', 'FastAPI', 'Docker', 'GitHub Actions'],
         features: [
-            'Real-time vectorized inference with Spark Streaming',
-            '40%+ reduction in processing latency',
-            'Robust data governance with Pydantic validation',
-            'Scalable Kafka-based ingestion layer',
-            'Decoupled, modular architecture for fault tolerance'
+            'Promotion gate: the challenger replaces the champion only if the lower bound of the 95% interval of the NDCG@10 difference is above 0',
+            'MLflow on DagsHub: runs, metrics with interval bounds and a model registry with a champion alias',
+            'Raw and processed data on Cloudflare R2',
+            'Docker image that holds the model and no credentials'
         ],
-        impact: '40%+ reduction in processing latency; Robust data governance implemented.',
-        challenges: 'Managing real-time data consistency and handling malformed source data at scale.'
+        impact: 'On July 2019, a month no modelling decision had looked at: HitRate@10 27.7% against 22.4% for popularity, NDCG@10 0.0831 against 0.0711 (paired difference +0.0121, 95% CI [+0.0044, +0.0193], 1,475 users). The API answers in about 5 ms (median, measured from the client).',
+        challenges: 'Accuracy costs variety: the champion recommends 439 distinct movies across 1,475 users. Plain PureSVD did not beat popularity at first; the training window did most of the work. Evaluating each month\'s champion over several months is still planned.'
     },
     {
-        title: 'Big Data MLOps Movie Recommender System',
-        description: 'Moving beyond black-box recommendations with Explainable AI and high-scale vector search.',
-        bgImage: '/work-5.png',
-        link: 'https://github.com/thanhtan2210/Big-Data-MLOps-System',
-        slug: 'movie-mlops',
-        longDescription: 'Standard recommendation systems often fail the "Why?" test—they suggest items but cannot explain the reasoning. I built a system that combines the speed of vector search (LanceDB) with the reasoning capabilities of LLMs (Llama-3.3) to provide personalized, explainable recommendations at scale.',
-        technologies: ['Python', 'LanceDB', 'SentenceTransformer', 'Groq (Llama-3.3-70b)', 'RAG', 'Streamlit', 'Cloudflare R2', 'MLflow'],
+        title: 'Flight Price Prediction & Quote Assessment',
+        description: 'Is this fare cheap, fair or expensive?',
+        bgImage: '/work/flight.png',
+        link: 'https://github.com/thanhtan2210/flight-price-prediction',
+        demoLink: 'https://flight-price-prediction-t.streamlit.app/',
+        slug: 'flight-price-prediction',
+        longDescription: 'A travel-agency employee holds a quote for a domestic flight in India and needs to know whether the price is cheap, fair or expensive compared with similar flights. A case study on 10,462 fares for March–June 2019 on five routes: one preprocessing function feeds an XGBoost price model and two quantile models that give a calibrated 80% price range, and price comparisons hold airline, route and stops constant.',
+        technologies: ['Python', 'pandas', 'XGBoost', 'Conformalized quantile regression', 'Streamlit'],
         features: [
-            'Latent Space Enhancement: Injected [Quality] tokens and ratings into text descriptions before encoding',
-            'Pseudo-Tower Personalization: Weighted-average vector calculations for personalized results without complex servers',
-            'Hybrid Reranker: Custom scoring logic (60% Similarity + 30% Popularity + 10% Quality)',
-            'Zero-Downtime Fallback: Smart router falls back from Groq (LLM) to local LanceDB search during rate limits'
+            'One feature function shared by training and serving, which fixed a bug in the old CLI that always predicted with a flight duration of 0; a test checks that both paths give the same features',
+            'Duplicates removed before the split; outlier fences learned on the training set only',
+            'Model chosen by 5-fold cross-validation; the test set is used once',
+            '80% price range from two XGBoost quantile models calibrated with conformalized quantile regression'
         ],
-        impact: 'Processed 25M records from MovieLens; Deployed production-grade RAG system on zero-cost infrastructure.',
-        challenges: 'Balancing LLM latency with vector search speed. Learned to use Function Calling to make LLMs act as intelligent routers.',
-        demoLink: 'https://huggingface.co/spaces/thanhtanphan/ai-movie-resys'
-    },
-    {
-        title: 'NYC Taxi Data Warehouse & Decision Support System',
-        description: 'Architecting high-performance data foundations to turn millions of raw trips into urban mobility insights.',
-        bgImage: '/work-6.png',
-        link: 'https://github.com/thanhtan2210/DW-and-DSS-for-Travel-Demand-Predicttion',
-        slug: 'nyc-data-warehouse',
-        longDescription: 'Real-world data is often messy, fragmented, and siloed. This project demonstrates a full end-to-end Data Engineering lifecycle: ingesting millions of NYC Taxi records, restructuring them into an optimized Star Schema, and serving predictive analytics for city planning.',
-        technologies: ['Python', 'BigQuery', 'Polars', 'Star Schema', 'XGBoost', 'Random Forest', 'LSTM', 'Streamlit', 'Power BI'],
-        features: [
-            'Star Schema Optimization: Designed Fact_Trips (~50 columns) and Fact_Demand_Hourly feature store',
-            'High-Performance ETL: Built a pipeline using Polars for Parquet processing and BigQuery warehouse',
-            'Hybrid Predictive Modeling: Developed and compared XGBoost, Random Forest, and LSTM models',
-            'Decision Support System (DSS): Streamlit web app and Power BI OLAP dashboard for visualization'
-        ],
-        impact: 'Reduced analytical query time by 60%; Created a unified source of truth for automated ML feature syncing.',
-        challenges: 'Managing millions of records required moving from Pandas to Polars. Data architecture (Star Schema) is as critical as the algorithm.'
+        impact: 'R² 0.872 and MAE 678 INR on a hold-out test set; the 80% price range contains 78.8% of test prices. On the same airline and route, a one-stop flight cost a median 3,038 INR more than a non-stop one (95% CI 964 to 4,410; 10 groups).',
+        challenges: 'Confounding: across airlines, the Jet Airways fare without a meal looks dearer, but on the same airline and route it is 3,436 INR cheaper (95% CI 1,830 to 6,132; only 6 groups). April has only 1,078 flights, and airlines with fewer than 30 flights are not analysed.'
     }
 ]
 
