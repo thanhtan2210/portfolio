@@ -20,9 +20,9 @@ const ProjectDetailsClient = ({ project }) => {
                 transition={{ duration: 0.5, delay: 0.3 }}
             >
                 <div className='flex flex-wrap items-center gap-x-8 gap-y-2 mb-8'>
-                    <Link href="/work" className='flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition duration-300 w-fit'>
+                    <Link href="/#work" className='flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition duration-300 w-fit'>
                         <Image src={assets.right_arrow} alt='' className='w-4 rotate-180 dark:invert' />
-                        Back to all projects
+                        All projects
                     </Link>
                     <Link href="/" className='text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition duration-300 w-fit'>
                         Home

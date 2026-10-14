@@ -16,7 +16,7 @@ const ProjectPage = async ({ params }) => {
         return (
             <div className='px-[12%] py-20 pt-32 text-center'>
                 <h1 className='text-3xl font-Ovo'>Project not found</h1>
-                <Link href="/work" className='mt-5 inline-block text-blue-500 underline'>Back to all projects</Link>
+                <Link href="/#work" className='mt-5 inline-block text-blue-500 underline'>All projects</Link>
             </div>
         )
     }
