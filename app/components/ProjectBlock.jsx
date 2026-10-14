@@ -29,7 +29,7 @@ const ProjectBlock = ({ project }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className='scroll-mt-24 border border-gray-400 rounded-xl p-5 sm:p-8 lg:p-10 dark:border-white/50'>
+            className='scroll-mt-24 border border-gray-400 rounded-xl p-4 sm:p-8 lg:p-10 dark:border-white/50'>
             <h3 className='text-2xl sm:text-3xl font-semibold leading-tight'>{project.title}</h3>
             <p className='mt-2 text-gray-700 dark:text-white/80'>{project.description}</p>
 
