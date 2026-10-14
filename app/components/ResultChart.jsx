@@ -36,6 +36,9 @@ function useWidth(ref) {
     return width
 }
 
+// Half of the tooltip's max width: keeps the centred tooltip inside the chart.
+const TIP_HALF = 110
+
 function useTooltip(width) {
     const [tip, setTip] = useState(null)
     const handlers = (x, y, text) => ({
@@ -45,8 +48,8 @@ function useTooltip(width) {
         className: 'cursor-pointer',
     })
     const node = tip && (
-        <div role='status' className='pointer-events-none absolute z-10 px-2 py-1 rounded-md text-xs leading-snug whitespace-nowrap bg-white text-black border border-gray-400 shadow-[2px_2px_0_#000] dark:bg-darkTheme dark:text-white dark:border-white/50 dark:shadow-[2px_2px_0_#fff]'
-            style={{ left: Math.min(Math.max(tip.x, 90), width - 90), top: tip.y - 8, transform: 'translate(-50%, -100%)' }}>
+        <div role='status' className='pointer-events-none absolute z-10 w-max max-w-[220px] px-2 py-1 rounded-md text-xs leading-snug bg-white text-black border border-gray-400 shadow-[2px_2px_0_#000] dark:bg-darkTheme dark:text-white dark:border-white/50 dark:shadow-[2px_2px_0_#fff]'
+            style={{ left: Math.min(Math.max(tip.x, TIP_HALF), width - TIP_HALF), top: tip.y - 8, transform: 'translate(-50%, -100%)' }}>
             {tip.text}
         </div>
     )
