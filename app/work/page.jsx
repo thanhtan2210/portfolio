@@ -14,8 +14,8 @@ const WorkCard = ({ project, index }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group'
-                style={{ backgroundImage: `url(${project.bgImage})` }}>
+                className='aspect-square bg-no-repeat bg-cover rounded-lg border border-gray-300 dark:border-white/30 relative cursor-pointer group'
+                style={{ backgroundImage: `url(${project.bgImage})`, backgroundPosition: project.bgPosition ?? 'center' }}>
                 <div className='bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7 '>
                     <div>
                         <h2 className='font-semibold'>{project.title}</h2>

@@ -64,8 +64,8 @@ const About = ({ isDarkMode }) => {
                     </motion.ul>
 
                     <motion.h4
-                        initial={{ opacity: 20, y: 0 }}
-                        whileInView={{ opacity: 0, y: 1 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         transition={{ duration: 1.3, delay: 0.5 }}
                         className='my-6 text-gray-700 font-Ovo dark:text-white/80'>
                         Tools I use

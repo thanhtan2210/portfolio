@@ -33,7 +33,7 @@ const Work = ({ isDarkMode }) => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                Three projects, each with a baseline, confidence intervals and a list of limitations. Every number below comes from the project's README.
+                Three projects, each with a baseline, confidence intervals and a list of limitations. Every number below comes from the project's README and docs.
             </motion.p>
 
             <motion.div
@@ -46,7 +46,7 @@ const Work = ({ isDarkMode }) => {
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.3 }}
-                            className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group' style={{ backgroundImage: `url(${project.bgImage})` }}>
+                            className='aspect-square bg-no-repeat bg-cover rounded-lg border border-gray-300 dark:border-white/30 relative cursor-pointer group' style={{ backgroundImage: `url(${project.bgImage})`, backgroundPosition: project.bgPosition ?? 'center' }}>
                             <div className='bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7 '>
                                 <div>
                                     <h2 className='font-semibold'>{project.title}</h2>

@@ -84,6 +84,8 @@ export const workData = [
         title: 'Movie Recommender MLOps',
         description: 'Monthly retraining with a statistical promotion gate',
         bgImage: '/work/movie.png',
+        // Square crop of a 1440x760 screenshot: keeps the registry table from the Version to the Aliases column
+        bgPosition: '40% center',
         link: 'https://github.com/thanhtan2210/movie-recommender-mlops',
         slug: 'movie-recommender-mlops',
         longDescription: 'MovieLens 25M, split by time. A truncated SVD of the user × movie "liked" matrix, blended with recent popularity, is compared with popularity alone. One command runs a monthly cycle: prepare the data, compare challenger and champion on the last 30 days of training data, promote only if the challenger is better with 95% confidence, refit the winner, register it in MLflow and score it on the following 30 days. The champion is served by FastAPI in a Docker image.',

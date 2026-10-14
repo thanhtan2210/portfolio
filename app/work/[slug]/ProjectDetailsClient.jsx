@@ -149,13 +149,13 @@ const ProjectDetailsClient = ({ project }) => {
                     initial={{ scale: 0.9, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className='flex-1 relative min-h-[300px] md:min-h-[400px] rounded-2xl overflow-hidden shadow-2xl'
+                    className='w-full md:flex-1 relative aspect-[4/3] self-start md:sticky md:top-28 rounded-2xl overflow-hidden shadow-2xl bg-gray-100 dark:bg-darkHover'
                 >
                     <Image 
                         src={project.bgImage} 
                         alt={project.title} 
                         fill
-                        className='object-cover'
+                        className='object-contain'
                     />
                 </motion.div>
             </div>
