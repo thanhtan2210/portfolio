@@ -16,13 +16,15 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        const onScroll = () => {
             if (scrollY > 50) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
             }
-        })
+        }
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
     return (
@@ -58,7 +60,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
                 {/* Mobile menu*/}
 
-                <ul ref={sideMenuRef} className='flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-0 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white'>
+                <ul ref={sideMenuRef} className='translate-x-full flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-0 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white'>
 
                     <div className='absolute top-6 right-6' onClick={closeMenu}>
                         <Image src={isDarkMode ? assets.close_white : assets.close_black} alt='' className='w-5 cursor-pointer' />

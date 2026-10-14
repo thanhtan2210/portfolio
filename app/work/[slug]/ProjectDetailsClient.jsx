@@ -19,10 +19,15 @@ const ProjectDetailsClient = ({ project }) => {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
             >
-                <Link href="/work" className='flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition duration-300 mb-8 w-fit'>
-                    <Image src={assets.right_arrow} alt='' className='w-4 rotate-180 dark:invert' />
-                    Back to all projects
-                </Link>
+                <div className='flex flex-wrap items-center gap-x-8 gap-y-2 mb-8'>
+                    <Link href="/work" className='flex items-center gap-2 text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition duration-300 w-fit'>
+                        <Image src={assets.right_arrow} alt='' className='w-4 rotate-180 dark:invert' />
+                        Back to all projects
+                    </Link>
+                    <Link href="/" className='text-gray-700 dark:text-white/80 hover:text-black dark:hover:text-white transition duration-300 w-fit'>
+                        Home
+                    </Link>
+                </div>
             </motion.div>
 
             <div className='flex flex-col md:flex-row gap-12'>
@@ -32,7 +37,7 @@ const ProjectDetailsClient = ({ project }) => {
                         initial={{ y: -20, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
-                        className='text-4xl md:text-5xl font-Ovo dark:text-white mb-6'
+                        className='text-3xl md:text-4xl font-Ovo dark:text-white mb-6'
                     >
                         {project.title}
                     </motion.h1>
