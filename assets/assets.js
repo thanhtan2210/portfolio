@@ -109,6 +109,61 @@ export const workData = [
         }
     },
     {
+        title: 'Airline Tweet Sentiment Stream',
+        description: 'Kafka → Spark → MongoDB, checked tweet by tweet against the offline model',
+        bgImage: '/work/sentiment.png',
+        link: 'https://github.com/thanhtan2210/realtime-sentiment-streaming',
+        slug: 'realtime-sentiment-streaming',
+        longDescription: 'A customer-care team wants to see, hour by hour, when the tweets aimed at an airline turn negative, while there is still time to react. Tweets go through Kafka into a Spark Structured Streaming job that labels each one negative, neutral or positive with a TF-IDF + logistic regression model and counts the labels per airline and hour; MongoDB stores both and a Streamlit dashboard reads them. The data is 14,640 labelled tweets about six US airlines from February 2015: the model is trained on the earlier days, and the stream replays the last two, which the model never saw.',
+        technologies: ['Python', 'Apache Kafka', 'Spark Structured Streaming', 'MongoDB', 'scikit-learn', 'Streamlit', 'Docker Compose', 'GitHub Actions'],
+        features: [
+            'Event time in Spark: a 30-minute watermark, deduplication on tweet_id within the watermark and 1-hour windows per airline',
+            'Idempotent sinks: predictions are keyed by tweet_id and windows by airline and hour, so a re-run micro-batch overwrites instead of adding',
+            'Replay of the 4,196 test tweets: 4,196 predictions, 198 airline-hour windows, 0 rows dropped by the watermark',
+            'Model scored once on the last two days; hyper-parameters chosen by time-ordered cross-validation on the training tweets only',
+            'Benchmark workflow on GitHub Actions; a pandas_udf scored 10.64 times faster than a row-by-row udf'
+        ],
+        impact: 'On the 4,196 test tweets the model reaches macro-F1 0.7107 [0.6945, 0.7276] against 0.2555 for always answering "negative", and the stream gives the same label as the offline model for all 4,196 tweets. In a burst of 20,980 tweets on a 2-vCPU GitHub Actions runner the stack handled 1,264.6 tweets per second, with a median of 6.076 s from send to write.',
+        challenges: 'The data covers 8 days in 2015 and nothing is connected to Twitter: the stream replays old tweets. Neutral is the weakest class (F1 0.599). For this much data Spark is more machinery than the job needs; it is used to show event time, a watermark and checkpoints. The benchmark is a burst on one runner, not latency at a steady rate.',
+        stats: [
+            { value: '0.711', label: 'macro-F1 on unseen days (always "negative": 0.256)' },
+            { value: '100%', label: 'stream labels match the offline model (4,196 of 4,196)' },
+            { value: '1,264.6', label: 'tweets per second in a burst on a 2-vCPU runner' },
+            { value: '10.6×', label: 'faster scoring with pandas_udf than a row-by-row udf' }
+        ],
+        pipeline: [
+            { title: 'Replay producer', note: 'test-set tweets' },
+            { title: 'Kafka', note: '3 partitions, key = tweet_id' },
+            { title: 'Spark Structured Streaming', note: 'pandas_udf model, watermark, 1-hour windows' },
+            { title: 'MongoDB', note: 'idempotent upserts by _id' },
+            { title: 'Streamlit', note: 'live or replay dashboard' }
+        ],
+        chart: {
+            type: 'intervals',
+            title: 'Macro-F1 on the 4,196 test tweets, 95% bootstrap intervals',
+            caption: 'Dot: value. Bar: 95% paired-bootstrap interval (1,000 resamples). The test tweets are the last two days, scored once.',
+            sourceUrl: 'https://github.com/thanhtan2210/realtime-sentiment-streaming/blob/main/models/metrics.json',
+            sourceLabel: 'models/metrics.json',
+            data: {
+                unit: '',
+                digits: 3,
+                labelWidth: 132,
+                metricHeader: 'Metric',
+                rowHeader: 'Classifier',
+                axis: { min: 0, max: 0.8, ticks: [0, 0.2, 0.4, 0.6, 0.8], labeled: [0, 0.2, 0.4, 0.6, 0.8], digits: 1 },
+                metrics: [
+                    {
+                        label: 'Macro-F1',
+                        rows: [
+                            { name: 'TF-IDF + LR', role: 'main', value: 0.7107, low: 0.6945, high: 0.7276 },
+                            { name: 'Always "negative"', role: 'baseline', value: 0.2555, low: 0.2519, high: 0.2591 }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
         title: 'Churn Predictor: Leakage Audit and Rebuild',
         description: 'A reported ROC-AUC of 0.999, traced to leakage and rebuilt',
         bgImage: '/work/churn.png',
