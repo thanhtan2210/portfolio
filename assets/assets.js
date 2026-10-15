@@ -109,6 +109,68 @@ export const workData = [
         }
     },
     {
+        title: 'Churn Predictor: Leakage Audit and Rebuild',
+        description: 'A reported ROC-AUC of 0.999, traced to leakage and rebuilt',
+        bgImage: '/work/churn.png',
+        link: 'https://github.com/thanhtan2210/automl-churn-prediction',
+        slug: 'automl-churn-prediction',
+        longDescription: 'An older AutoML churn pipeline reported ROC-AUC 0.999 on IBM Telco. Re-running its protocol one fix at a time showed why: three columns leak the answer (Churn Reason, Churn Score, Churn Label) and SMOTE ran before cross-validation. The rebuilt app profiles every column on the training split and flags likely leaks, tunes one LightGBM with Optuna inside a scikit-learn Pipeline, compares it with a logistic-regression baseline on a test split scored once, and explains each customer\'s risk.',
+        technologies: ['Python', 'pandas', 'scikit-learn', 'LightGBM', 'Optuna', 'MLflow', 'FastAPI', 'SQLite', 'Next.js', 'GitHub Actions'],
+        features: [
+            'Leakage audit of the old protocol, one fix per step: dropping Churn Reason takes test ROC-AUC from 1.000 to 0.980, dropping Churn Score and CLTV takes it to 0.841',
+            'On clean features, SMOTE before cross-validation raised the CV AUC from 0.849 to 0.928 while test ROC-AUC stayed at 0.841: it inflated the estimate, not the model',
+            'Column profiler measured on the training split only: single-column AUC and missingness flag likely leaks, and flagged columns are unticked by default',
+            'Every learned step inside one scikit-learn Pipeline; LightGBM tuned by Optuna on 5-fold CV of the training split',
+            'FastAPI + Next.js app (Upload, Profile, Model, Predict) that gives each customer up to three reasons from LightGBM pred_contrib'
+        ],
+        impact: 'On the held-out test split (95% bootstrap CIs, 1,000 paired resamples): IBM Telco LightGBM ROC-AUC 0.859 [0.837, 0.879] against 0.849 [0.825, 0.870] for logistic regression, a small edge of +0.010 [0.003, 0.017]; UCI Iranian 0.988 [0.978, 0.995] against 0.927 [0.899, 0.949].',
+        challenges: 'The Telco test split was already scored during the audit, so it is not pristine. The profiler only catches statistical leakage: it cannot know when a column was recorded. The F1 threshold flags 566 of 1,409 Telco test customers (40%). Neither dataset has dates, so the split is random, and the app runs locally for one user with no deployment.',
+        stats: [
+            { value: '0.859', label: 'clean IBM Telco test ROC-AUC (old pipeline reported 0.999)' },
+            { value: '3', label: 'leaking columns found and removed' },
+            { value: '+0.010', label: 'ROC-AUC vs logistic regression (95% CI +0.003 to +0.017)' },
+            { value: '0.988', label: 'UCI Iranian test ROC-AUC (logistic regression 0.927)' }
+        ],
+        pipeline: [
+            { title: 'Upload', note: 'CSV/XLSX, duplicates removed, 80/20 split' },
+            { title: 'Profile', note: 'training split only, leakage flags' },
+            { title: 'LightGBM + Optuna', note: 'one Pipeline, vs LR baseline' },
+            { title: 'Test once', note: 'paired bootstrap CIs' },
+            { title: 'Predict', note: 'risk and top reasons per customer' }
+        ],
+        chart: {
+            type: 'intervals',
+            title: 'ROC-AUC on the held-out test split, 95% bootstrap intervals',
+            caption: 'Dot: value. Bar: 95% bootstrap interval (1,000 paired resamples). On Telco the two intervals overlap, but the paired difference, +0.010 [0.003, 0.017], stays above 0.',
+            sourceUrl: 'https://github.com/thanhtan2210/automl-churn-prediction/blob/main/README.md?plain=1#L42-L53',
+            sourceLabel: 'README.md, clean results table',
+            data: {
+                unit: '',
+                digits: 3,
+                labelWidth: 128,
+                metricHeader: 'Dataset',
+                rowHeader: 'Model',
+                axis: { min: 0.8, max: 1, ticks: [0.8, 0.85, 0.9, 0.95, 1], labeled: [0.8, 0.85, 0.9, 0.95, 1], digits: 2 },
+                metrics: [
+                    {
+                        label: 'IBM Telco (1,409 test rows)',
+                        rows: [
+                            { name: 'LightGBM', role: 'main', value: 0.859, low: 0.837, high: 0.879 },
+                            { name: 'Logistic regression', role: 'baseline', value: 0.849, low: 0.825, high: 0.870 }
+                        ]
+                    },
+                    {
+                        label: 'UCI Iranian (570 test rows)',
+                        rows: [
+                            { name: 'LightGBM', role: 'main', value: 0.988, low: 0.978, high: 0.995 },
+                            { name: 'Logistic regression', role: 'baseline', value: 0.927, low: 0.899, high: 0.949 }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
         title: 'Movie Recommender MLOps',
         description: 'Monthly retraining with a statistical promotion gate',
         bgImage: '/work/movie.png',
