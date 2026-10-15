@@ -36,7 +36,7 @@ const Work = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.7 }}
                 className='text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo'>
-                Four projects, each with a baseline, confidence intervals and a list of limitations. Every number below comes from the project's README and docs.
+                Five projects, each with a baseline, confidence intervals and a list of limitations. Every number below comes from the project's README and docs.
             </motion.p>
 
             <div className='flex flex-col gap-10 my-10'>
