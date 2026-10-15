@@ -122,13 +122,17 @@ const PairedBars = ({ data, width, title }) => {
 
 const Intervals = ({ data, width, title }) => {
     const { handlers, node } = useTooltip(width)
-    const left = 84, right = 48, top = 4, headH = 24, rowH = 28, metricGap = 14, axisH = 24
+    // Percentages by default; ROC-AUC style data sets unit '' and digits 3.
+    const unit = data.unit ?? '%', digits = data.digits ?? 1
+    const v = (n) => `${fmt(n, digits)}${unit}`
+    const labeledTicks = data.axis.labeled ?? data.axis.ticks.filter((t) => t % 10 === 0)
+    const left = data.labelWidth ?? 84, right = 48, top = 4, headH = 24, rowH = 28, metricGap = 14, axisH = 24
     const rows = data.metrics[0].rows
     const H = top + data.metrics.length * (headH + rows.length * rowH) + (data.metrics.length - 1) * metricGap + axisH
     const plotW = width - left - right
-    const x = (v) => left + ((v - data.axis.min) / (data.axis.max - data.axis.min)) * plotW
+    const x = (n) => left + ((n - data.axis.min) / (data.axis.max - data.axis.min)) * plotW
     const plotBottom = H - axisH
-    const label = `${title}. ` + data.metrics.map((m) => `${m.label}: ` + m.rows.map((r) => `${r.name} ${fmt(r.value, 1)}% (95% interval ${fmt(r.low, 1)} to ${fmt(r.high, 1)})`).join(', ')).join('; ')
+    const label = `${title}. ` + data.metrics.map((m) => `${m.label}: ` + m.rows.map((r) => `${r.name} ${v(r.value)} (95% interval ${fmt(r.low, digits)} to ${fmt(r.high, digits)})`).join(', ')).join('; ')
     let cursor = top
     return (
         <>
@@ -138,7 +142,7 @@ const Intervals = ({ data, width, title }) => {
                     {data.axis.ticks.map((t) => (
                         <g key={t}>
                             <line x1={x(t)} x2={x(t)} y1={top} y2={plotBottom} className={GRID} strokeWidth='1' />
-                            {t % 10 === 0 && <text x={x(t)} y={H - 6} textAnchor='middle' fontSize='11' className={MUTED}>{t}%</text>}
+                            {labeledTicks.includes(t) && <text x={x(t)} y={H - 6} textAnchor='middle' fontSize='11' className={MUTED}>{fmt(t, data.axis.digits ?? 0)}{unit}</text>}
                         </g>
                     ))}
                     {data.metrics.map((m, mi) => {
@@ -149,14 +153,14 @@ const Intervals = ({ data, width, title }) => {
                                 <text x={0} y={y0 + 16} fontSize='12' fontWeight='600' className={TEXT}>{m.label}</text>
                                 {m.rows.map((r, ri) => {
                                     const cy = y0 + headH + ri * rowH + rowH / 2
-                                    const text = `${r.name}, ${m.label}: ${fmt(r.value, 1)}% (95% CI ${fmt(r.low, 1)}–${fmt(r.high, 1)}%)`
+                                    const text = `${r.name}, ${m.label}: ${v(r.value)} (95% CI ${fmt(r.low, digits)}–${v(r.high)})`
                                     return (
                                         <g key={r.name} {...handlers(x(r.value), cy - 8, text)}>
                                             <rect x={0} y={cy - rowH / 2} width={width} height={rowH} fill='transparent' />
                                             <text x={0} y={cy} dy='0.32em' fontSize='12' className={MUTED}>{r.name}</text>
                                             <rect x={x(r.low)} y={cy - 4} width={Math.max(8, x(r.high) - x(r.low))} height='8' rx='4' className={`${FILL[r.role]} opacity-50 dark:opacity-70`} />
                                             <circle cx={x(r.value)} cy={cy} r='6' strokeWidth='2' className={`${FILL[r.role]} stroke-white dark:stroke-darkTheme`} />
-                                            <text x={x(r.high) + 8} y={cy} dy='0.32em' fontSize='11' className={TEXT}>{fmt(r.value, 1)}%</text>
+                                            <text x={x(r.high) + 8} y={cy} dy='0.32em' fontSize='11' className={TEXT}>{v(r.value)}</text>
                                         </g>
                                     )
                                 })}
@@ -168,9 +172,9 @@ const Intervals = ({ data, width, title }) => {
             </div>
             <table className='sr-only'>
                 <caption>{title}</caption>
-                <thead><tr><th scope='col'>Metric</th><th scope='col'>Recommender</th><th scope='col'>Value (%)</th><th scope='col'>95% interval (%)</th></tr></thead>
+                <thead><tr><th scope='col'>{data.metricHeader ?? 'Metric'}</th><th scope='col'>{data.rowHeader ?? 'Recommender'}</th><th scope='col'>Value{unit && ` (${unit})`}</th><th scope='col'>95% interval{unit && ` (${unit})`}</th></tr></thead>
                 <tbody>{data.metrics.flatMap((m) => m.rows.map((r) => (
-                    <tr key={m.label + r.name}><th scope='row'>{m.label}</th><td>{r.name}</td><td>{fmt(r.value, 1)}</td><td>{fmt(r.low, 1)} to {fmt(r.high, 1)}</td></tr>
+                    <tr key={m.label + r.name}><th scope='row'>{m.label}</th><td>{r.name}</td><td>{fmt(r.value, digits)}</td><td>{fmt(r.low, digits)} to {fmt(r.high, digits)}</td></tr>
                 )))}</tbody>
             </table>
         </>
