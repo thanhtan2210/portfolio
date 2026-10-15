@@ -2,16 +2,17 @@ import React from 'react'
 import { motion } from 'motion/react'
 import { TechChips } from './ProjectBlock'
 
-// Same groups and items as the Skills section of the CV.
+// Same groups as the Skills section of the CV; every item is used in one of the projects above.
 const skills = [
     { group: 'Languages', items: ['Python', 'SQL', 'TypeScript'] },
-    { group: 'Data', items: ['DuckDB', 'pandas', 'Star-schema modelling', 'Parquet', 'Cloudflare R2'] },
-    { group: 'Machine learning', items: ['scikit-learn', 'XGBoost', 'MLflow', 'Bootstrap confidence intervals', 'Conformalized quantile regression'] },
-    { group: 'Delivery', items: ['FastAPI', 'Docker', 'Streamlit', 'GitHub Actions', 'Git'] },
+    { group: 'Data', items: ['DuckDB', 'pandas', 'Star-schema modelling', 'Parquet', 'SQLite', 'Cloudflare R2'] },
+    { group: 'Machine learning', items: ['scikit-learn', 'XGBoost', 'LightGBM', 'Optuna', 'MLflow', 'Bootstrap confidence intervals', 'Conformalized quantile regression'] },
+    { group: 'Delivery', items: ['FastAPI', 'Next.js', 'Docker', 'Streamlit', 'GitHub Actions', 'Git'] },
 ]
 
 const projectLinks = [
     { name: 'NYC taxi demand', slug: 'nyc-taxi-demand-forecasting' },
+    { name: 'churn leakage audit', slug: 'automl-churn-prediction' },
     { name: 'movie recommender MLOps', slug: 'movie-recommender-mlops' },
     { name: 'flight prices', slug: 'flight-price-prediction' },
 ]
