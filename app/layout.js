@@ -11,7 +11,7 @@ const ovo = Ovo({
 
 export const metadata = {
   title: "Portfolio Phan Thanh Tấn",
-  description: "",
+  description: "Portfolio of Phan Thanh Tan: data engineering and machine learning projects.",
 };
 
 export default function RootLayout({ children }) {

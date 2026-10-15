@@ -6,13 +6,8 @@ import edu_icon_dark from './edu-icon-dark.png';
 import project_icon from './project-icon.png';
 import project_icon_dark from './project-icon-dark.png';
 import vscode from './vscode.png';
-import firebase from './firebase.png';
-import figma from './figma.png';
 import git from './git.png';
-import mongodb from './mongodb.png';
 import right_arrow_white from './right-arrow-white.png';
-import logo from './logo.png';
-import logo_dark from './logo_dark.png';
 import mail_icon from './mail_icon.png';
 import mail_icon_dark from './mail_icon_dark.png';
 import profile_img from './profile-img.png';
@@ -27,21 +22,9 @@ import menu_black from './menu-black.png';
 import menu_white from './menu-white.png';
 import close_black from './close-black.png';
 import close_white from './close-white.png';
-import web_icon from './web-icon.png';
-import mobile_icon from './mobile-icon.png';
-import ui_icon from './ui-icon.png';
-import graphics_icon from './graphics-icon.png';
 import right_arrow from './right-arrow.png';
-import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
-import right_arrow_bold_dark from './right-arrow-bold-dark.png';
 import python from './python.png';
-import aws from './aws.png';
-import ml_icon from './ml_icon.png';
-import analysis_icon from './analysis_icon.png';
-import dashboard_icon from './dashboard_icon.png';
-import ai_solution_icon from './ai_solution_icon.png';
-import backend_icon from './backend_icon.png';
 
 export const assets = {
     user_image,
@@ -52,13 +35,8 @@ export const assets = {
     project_icon,
     project_icon_dark,
     vscode,
-    firebase,
-    figma,
     git,
-    mongodb,
     right_arrow_white,
-    logo,
-    logo_dark,
     mail_icon,
     mail_icon_dark,
     profile_img,
@@ -73,128 +51,241 @@ export const assets = {
     menu_white,
     close_black,
     close_white,
-    web_icon,
-    mobile_icon,
-    ui_icon,
-    graphics_icon,
     right_arrow,
-    send_icon,
     right_arrow_bold,
-    right_arrow_bold_dark,
-    python, aws,
-    ml_icon,
-    ai_solution_icon,
-    analysis_icon,
-    dashboard_icon,
-    backend_icon
+    python
 };
 
 export const workData = [
     {
-        title: 'Scalable Customer Data Platform (CDP) — v2',
-        description: 'Decoupling data logic from model code to build truly reusable ML infrastructure.',
-        bgImage: '/work-3.png',
-        link: 'https://github.com/thanhtan2210/Scalable-Customer-Data-Platform-CDP',
-        slug: 'scalable-cdp',
-        longDescription: 'Most ML pipelines are built as "one-offs" for specific datasets, making them fragile and hard to scale. After achieving a 263x ROI with a hardcoded v1 pipeline, I am rebuilding the system into a generic, schema-agnostic platform that can ingest any tabular data and automatically generate production-ready insights.',
-        technologies: ['Python', 'FastAPI', 'Optuna', 'MLflow', 'Supabase', 'Cloudflare R2', 'Pandera', 'Docker', 'Airflow', 'Streamlit'],
+        title: 'NYC Taxi Demand Forecasting',
+        description: 'Next-hour pickups for 263 zones from 376M trip records',
+        bgImage: '/work/nyc.png',
+        link: 'https://github.com/thanhtan2210/nyc-taxi-demand-forecasting',
+        demoLink: 'https://nyc-taxi-demand-forecasting-t.streamlit.app/',
+        slug: 'nyc-taxi-demand-forecasting',
+        longDescription: 'A fleet dispatcher or a transport agency wants to know, one hour ahead, how many rides will be picked up in each of the 263 NYC taxi zones. DuckDB reads 376 million public TLC trip records from four services (yellow, green, FHV and high-volume FHV, June 2025 – July 2026) straight from the TLC URLs, builds a star schema and an hourly zone mart, and one global XGBoost model forecasts the next hour from lagged demand and calendar features.',
+        technologies: ['Python', 'DuckDB', 'SQL', 'XGBoost', 'Streamlit', 'GitHub Actions'],
         features: [
-            'Generic Profiling Engine: 3-layer profiling system (Statistical, Semantic, and LLM-based)',
-            'Automated Feature Engineering: Transform Registry and schema validation using Pandera',
-            'AutoML Orchestration: Integrated Optuna for hyperparameter optimization and MLflow tracking',
-            'Cloud-Native Storage: Cloudflare R2 for artifacts and Supabase for metadata management'
+            'Star schema in DuckDB that reads only two columns of each parquet file over HTTP',
+            'Data-quality accounting for every file: 350.8M of 376.4M trips (93.2%) could be placed on a zone',
+            'Leakage check: lag features recomputed independently in SQL; removing the short-term lags raises validation WAPE from 9.4% to 11.3%',
+            'Three-page Streamlit app: Overview, Patterns and Forecast',
+            'GitHub Actions workflow, started by hand, that rebuilds one month from the TLC files and compares it with the committed data'
         ],
-        impact: '93.5% Accuracy & 0.99 ROC-AUC on Telco churn (v1 baseline); Estimated 263x ROI; Integrated A/B Testing service.',
-        challenges: 'Handling edge cases in "dirty" CSVs. Learned that robust schema validation (Pandera) is more critical for production stability than the ML model itself.'
+        impact: 'On three held-out months (May–July 2026) XGBoost lowers MAE by 39.8% to 40.9% against a same-hour-last-week baseline (for example 22.44 → 13.25 trips per zone-hour in July), with WAPE 9.6–10.4% against 16.1–17.6%. Intervals come from a paired block bootstrap over days.',
+        challenges: 'Low-volume zones are poorly predicted in relative terms (EWR: WAPE 75–81%). 25.5M FHV trips have no pickup zone and are left out of the mart. A possible double count between yellow and Uber trips was checked on one day only.',
+        stats: [
+            { value: '376M', label: 'trip records' },
+            { value: '263', label: 'taxi zones' },
+            { value: '−40%', label: 'MAE vs same-hour-last-week baseline (39.8–40.9%)' },
+            { value: '9.6–10.4%', label: 'WAPE (baseline 16.1–17.6%)' }
+        ],
+        pipeline: [
+            { title: 'TLC parquet', note: '376M rows, 4 services' },
+            { title: 'DuckDB star schema', note: 'two columns read per file' },
+            { title: 'Hourly zone mart', note: '2,688,912 zone-hours' },
+            { title: 'XGBoost', note: 'next-hour forecast' },
+            { title: 'Streamlit', note: '3 pages' }
+        ],
+        chart: {
+            type: 'pairedBars',
+            title: 'MAE per test month (trips per zone-hour, lower is better)',
+            caption: 'Test months May–July 2026, each predicted once. Baseline: the same zone at the same hour one week earlier.',
+            sourceUrl: 'https://github.com/thanhtan2210/nyc-taxi-demand-forecasting/blob/main/README.md?plain=1#L27-L34',
+            sourceLabel: 'README.md, forecast accuracy table',
+            data: {
+                unit: '',
+                series: [
+                    { name: 'Same hour last week', role: 'baseline' },
+                    { name: 'XGBoost', role: 'main' }
+                ],
+                groups: [
+                    { label: 'May 2026', values: [21.94, 13.00] },
+                    { label: 'Jun 2026', values: [22.48, 13.54] },
+                    { label: 'Jul 2026', values: [22.44, 13.25] }
+                ]
+            }
+        }
     },
     {
-        title: 'Real-time Sentiment Analysis Pipeline',
-        description: 'Big Data, Spark Streaming, Kafka',
-        bgImage: '/work-4.png',
-        link: 'https://github.com/thanhtan2210/Sentiment-Analysis-System',
-        slug: 'sentiment-analysis',
-        longDescription: 'An industrial-grade sentiment analysis pipeline designed for real-time social media monitoring. Built with a decoupled architecture, it uses Kafka for data ingestion and Apache Spark Streaming for vectorized inference. It achieves 40%+ reduction in processing latency through optimized data structures and runtime schema validation with Pydantic.',
-        technologies: ['Python', 'Apache Spark', 'Kafka', 'HuggingFace', 'FastAPI', 'Docker'],
+        title: 'Churn Predictor: Leakage Audit and Rebuild',
+        description: 'A reported ROC-AUC of 0.999, traced to leakage and rebuilt',
+        bgImage: '/work/churn.png',
+        link: 'https://github.com/thanhtan2210/automl-churn-prediction',
+        slug: 'automl-churn-prediction',
+        longDescription: 'An older AutoML churn pipeline reported ROC-AUC 0.999 on IBM Telco. Re-running its protocol one fix at a time showed why: three columns leak the answer (Churn Reason, Churn Score, Churn Label) and SMOTE ran before cross-validation. The rebuilt app profiles every column on the training split and flags likely leaks, tunes one LightGBM with Optuna inside a scikit-learn Pipeline, compares it with a logistic-regression baseline on a test split scored once, and explains each customer\'s risk.',
+        technologies: ['Python', 'pandas', 'scikit-learn', 'LightGBM', 'Optuna', 'MLflow', 'FastAPI', 'SQLite', 'Next.js', 'GitHub Actions'],
         features: [
-            'Real-time vectorized inference with Spark Streaming',
-            '40%+ reduction in processing latency',
-            'Robust data governance with Pydantic validation',
-            'Scalable Kafka-based ingestion layer',
-            'Decoupled, modular architecture for fault tolerance'
+            'Leakage audit of the old protocol, one fix per step: dropping Churn Reason takes test ROC-AUC from 1.000 to 0.980, dropping Churn Score and CLTV takes it to 0.841',
+            'On clean features, SMOTE before cross-validation raised the CV AUC from 0.849 to 0.928 while test ROC-AUC stayed at 0.841: it inflated the estimate, not the model',
+            'Column profiler measured on the training split only: single-column AUC and missingness flag likely leaks, and flagged columns are unticked by default',
+            'Every learned step inside one scikit-learn Pipeline; LightGBM tuned by Optuna on 5-fold CV of the training split',
+            'FastAPI + Next.js app (Upload, Profile, Model, Predict) that gives each customer up to three reasons from LightGBM pred_contrib'
         ],
-        impact: '40%+ reduction in processing latency; Robust data governance implemented.',
-        challenges: 'Managing real-time data consistency and handling malformed source data at scale.'
+        impact: 'On the held-out test split (95% bootstrap CIs, 1,000 paired resamples): IBM Telco LightGBM ROC-AUC 0.859 [0.837, 0.879] against 0.849 [0.825, 0.870] for logistic regression, a small edge of +0.010 [0.003, 0.017]; UCI Iranian 0.988 [0.978, 0.995] against 0.927 [0.899, 0.949].',
+        challenges: 'The Telco test split was already scored during the audit, so it is not pristine. The profiler only catches statistical leakage: it cannot know when a column was recorded. The F1 threshold flags 566 of 1,409 Telco test customers (40%). Neither dataset has dates, so the split is random, and the app runs locally for one user with no deployment.',
+        stats: [
+            { value: '0.859', label: 'clean IBM Telco test ROC-AUC (old pipeline reported 0.999)' },
+            { value: '3', label: 'leaking columns found and removed' },
+            { value: '+0.010', label: 'ROC-AUC vs logistic regression (95% CI +0.003 to +0.017)' },
+            { value: '0.988', label: 'UCI Iranian test ROC-AUC (logistic regression 0.927)' }
+        ],
+        pipeline: [
+            { title: 'Upload', note: 'CSV/XLSX, duplicates removed, 80/20 split' },
+            { title: 'Profile', note: 'training split only, leakage flags' },
+            { title: 'LightGBM + Optuna', note: 'one Pipeline, vs LR baseline' },
+            { title: 'Test once', note: 'paired bootstrap CIs' },
+            { title: 'Predict', note: 'risk and top reasons per customer' }
+        ],
+        chart: {
+            type: 'intervals',
+            title: 'ROC-AUC on the held-out test split, 95% bootstrap intervals',
+            caption: 'Dot: value. Bar: 95% bootstrap interval (1,000 paired resamples). On Telco the two intervals overlap, but the paired difference, +0.010 [0.003, 0.017], stays above 0.',
+            sourceUrl: 'https://github.com/thanhtan2210/automl-churn-prediction/blob/main/README.md?plain=1#L42-L53',
+            sourceLabel: 'README.md, clean results table',
+            data: {
+                unit: '',
+                digits: 3,
+                labelWidth: 128,
+                metricHeader: 'Dataset',
+                rowHeader: 'Model',
+                axis: { min: 0.8, max: 1, ticks: [0.8, 0.85, 0.9, 0.95, 1], labeled: [0.8, 0.85, 0.9, 0.95, 1], digits: 2 },
+                metrics: [
+                    {
+                        label: 'IBM Telco (1,409 test rows)',
+                        rows: [
+                            { name: 'LightGBM', role: 'main', value: 0.859, low: 0.837, high: 0.879 },
+                            { name: 'Logistic regression', role: 'baseline', value: 0.849, low: 0.825, high: 0.870 }
+                        ]
+                    },
+                    {
+                        label: 'UCI Iranian (570 test rows)',
+                        rows: [
+                            { name: 'LightGBM', role: 'main', value: 0.988, low: 0.978, high: 0.995 },
+                            { name: 'Logistic regression', role: 'baseline', value: 0.927, low: 0.899, high: 0.949 }
+                        ]
+                    }
+                ]
+            }
+        }
     },
     {
-        title: 'Big Data MLOps Movie Recommender System',
-        description: 'Moving beyond black-box recommendations with Explainable AI and high-scale vector search.',
-        bgImage: '/work-5.png',
-        link: 'https://github.com/thanhtan2210/Big-Data-MLOps-System',
-        slug: 'movie-mlops',
-        longDescription: 'Standard recommendation systems often fail the "Why?" test—they suggest items but cannot explain the reasoning. I built a system that combines the speed of vector search (LanceDB) with the reasoning capabilities of LLMs (Llama-3.3) to provide personalized, explainable recommendations at scale.',
-        technologies: ['Python', 'LanceDB', 'SentenceTransformer', 'Groq (Llama-3.3-70b)', 'RAG', 'Streamlit', 'Cloudflare R2', 'MLflow'],
+        title: 'Movie Recommender MLOps',
+        description: 'Monthly retraining with a statistical promotion gate',
+        bgImage: '/work/movie.png',
+        // Square crop of a 1440x760 screenshot: keeps the registry table from the Version to the Aliases column
+        bgPosition: '40% center',
+        link: 'https://github.com/thanhtan2210/movie-recommender-mlops',
+        slug: 'movie-recommender-mlops',
+        longDescription: 'MovieLens 25M, split by time. A truncated SVD of the user × movie "liked" matrix, blended with recent popularity, is compared with popularity alone. One command runs a monthly cycle: prepare the data, compare challenger and champion on the last 30 days of training data, promote only if the challenger is better with 95% confidence, refit the winner, register it in MLflow and score it on the following 30 days. The champion is served by FastAPI in a Docker image.',
+        technologies: ['Python', 'scikit-learn', 'MLflow', 'DagsHub', 'Cloudflare R2', 'FastAPI', 'Docker', 'GitHub Actions'],
         features: [
-            'Latent Space Enhancement: Injected [Quality] tokens and ratings into text descriptions before encoding',
-            'Pseudo-Tower Personalization: Weighted-average vector calculations for personalized results without complex servers',
-            'Hybrid Reranker: Custom scoring logic (60% Similarity + 30% Popularity + 10% Quality)',
-            'Zero-Downtime Fallback: Smart router falls back from Groq (LLM) to local LanceDB search during rate limits'
+            'Promotion gate: the challenger replaces the champion only if the lower bound of the 95% interval of the NDCG@10 difference is above 0',
+            'MLflow on DagsHub: runs, metrics with interval bounds and a model registry with a champion alias',
+            'Raw and processed data on Cloudflare R2',
+            'Docker image that holds the model and no credentials'
         ],
-        impact: 'Processed 25M records from MovieLens; Deployed production-grade RAG system on zero-cost infrastructure.',
-        challenges: 'Balancing LLM latency with vector search speed. Learned to use Function Calling to make LLMs act as intelligent routers.',
-        demoLink: 'https://huggingface.co/spaces/thanhtanphan/ai-movie-resys'
+        impact: 'On July 2019, a month no modelling decision had looked at: HitRate@10 27.7% against 22.4% for popularity, NDCG@10 0.0831 against 0.0711 (paired difference +0.0121, 95% CI [+0.0044, +0.0193], 1,475 users). The API answers in about 5 ms (median, measured from the client).',
+        challenges: 'Accuracy costs variety: the champion recommends 439 distinct movies across 1,475 users. Plain PureSVD did not beat popularity at first; the training window did most of the work. Evaluating each month\'s champion over several months is still planned.',
+        stats: [
+            { value: '1,475', label: 'users in the untouched July 2019 test' },
+            { value: '27.7%', label: 'HitRate@10 (popularity 22.4%)' },
+            { value: '+0.0121', label: 'NDCG@10 vs popularity (95% CI +0.0044 to +0.0193)' },
+            { value: '~5 ms', label: 'median API latency' }
+        ],
+        pipeline: [
+            { title: 'MovieLens on R2', note: 'raw and prepared data' },
+            { title: 'Prepare', note: 'time split' },
+            { title: 'Gate', note: 'challenger vs champion, 95% CI' },
+            { title: 'MLflow registry', note: 'champion alias' },
+            { title: 'FastAPI in Docker', note: 'serves the champion' }
+        ],
+        chart: {
+            type: 'intervals',
+            title: 'July 2019, 1,475 users, 95% bootstrap intervals',
+            caption: 'Dot: value. Bar: 95% bootstrap interval over users (1,000 resamples). July 2019 was not used for any modelling decision.',
+            sourceUrl: 'https://github.com/thanhtan2210/movie-recommender-mlops/blob/main/reports/2019-07-01/production.json',
+            sourceLabel: 'reports/2019-07-01/production.json',
+            data: {
+                unit: '%',
+                axis: { min: 0, max: 35, ticks: [0, 5, 10, 15, 20, 25, 30, 35] },
+                metrics: [
+                    {
+                        label: 'HitRate@10',
+                        rows: [
+                            { name: 'Champion', role: 'main', value: 27.7, low: 25.4, high: 30.1 },
+                            { name: 'Popularity', role: 'baseline', value: 22.4, low: 20.3, high: 24.5 }
+                        ]
+                    },
+                    {
+                        label: 'Long-tail share',
+                        rows: [
+                            { name: 'Champion', role: 'main', value: 26.5, low: 25.0, high: 27.9 },
+                            { name: 'Popularity', role: 'baseline', value: 17.2, low: 16.8, high: 17.6 }
+                        ]
+                    }
+                ]
+            }
+        }
     },
     {
-        title: 'NYC Taxi Data Warehouse & Decision Support System',
-        description: 'Architecting high-performance data foundations to turn millions of raw trips into urban mobility insights.',
-        bgImage: '/work-6.png',
-        link: 'https://github.com/thanhtan2210/DW-and-DSS-for-Travel-Demand-Predicttion',
-        slug: 'nyc-data-warehouse',
-        longDescription: 'Real-world data is often messy, fragmented, and siloed. This project demonstrates a full end-to-end Data Engineering lifecycle: ingesting millions of NYC Taxi records, restructuring them into an optimized Star Schema, and serving predictive analytics for city planning.',
-        technologies: ['Python', 'BigQuery', 'Polars', 'Star Schema', 'XGBoost', 'Random Forest', 'LSTM', 'Streamlit', 'Power BI'],
+        title: 'Flight Price Prediction & Quote Assessment',
+        description: 'Is this fare cheap, fair or expensive?',
+        bgImage: '/work/flight.png',
+        link: 'https://github.com/thanhtan2210/flight-price-prediction',
+        demoLink: 'https://flight-price-prediction-t.streamlit.app/',
+        slug: 'flight-price-prediction',
+        longDescription: 'A travel-agency employee holds a quote for a domestic flight in India and needs to know whether the price is cheap, fair or expensive compared with similar flights. A case study on 10,462 fares for March–June 2019 on five routes: one preprocessing function feeds an XGBoost price model and two quantile models that give a calibrated 80% price range, and price comparisons hold airline, route and stops constant.',
+        technologies: ['Python', 'pandas', 'XGBoost', 'Conformalized quantile regression', 'Streamlit'],
         features: [
-            'Star Schema Optimization: Designed Fact_Trips (~50 columns) and Fact_Demand_Hourly feature store',
-            'High-Performance ETL: Built a pipeline using Polars for Parquet processing and BigQuery warehouse',
-            'Hybrid Predictive Modeling: Developed and compared XGBoost, Random Forest, and LSTM models',
-            'Decision Support System (DSS): Streamlit web app and Power BI OLAP dashboard for visualization'
+            'One feature function shared by training and serving, which fixed a bug in the old CLI that always predicted with a flight duration of 0; a test checks that both paths give the same features',
+            'Duplicates removed before the split; outlier fences learned on the training set only',
+            'Model chosen by 5-fold cross-validation; the test set is used once',
+            '80% price range from two XGBoost quantile models calibrated with conformalized quantile regression'
         ],
-        impact: 'Reduced analytical query time by 60%; Created a unified source of truth for automated ML feature syncing.',
-        challenges: 'Managing millions of records required moving from Pandas to Polars. Data architecture (Star Schema) is as critical as the algorithm.'
+        impact: 'R² 0.872 and MAE 678 INR on a hold-out test set; the 80% price range contains 78.8% of test prices. On the same airline and route, a one-stop flight cost a median 3,038 INR more than a non-stop one (95% CI 964 to 4,410; 10 groups).',
+        challenges: 'Confounding: across airlines, the Jet Airways fare without a meal looks dearer, but on the same airline and route it is 3,436 INR cheaper (95% CI 1,830 to 6,132; only 6 groups). April has only 1,078 flights, and airlines with fewer than 30 flights are not analysed.',
+        stats: [
+            { value: '0.872', label: 'R² on test' },
+            { value: '678 INR', label: 'MAE' },
+            { value: '78.8%', label: 'inside the 80% range' },
+            { value: '+3,038 INR', label: 'median one-stop premium' }
+        ],
+        pipeline: [
+            { title: 'Raw CSV', note: '10,462 fares after cleaning' },
+            { title: 'clean_raw + build_features', note: 'one function for train and serving' },
+            { title: 'XGBoost price + quantile models', note: 'CQR, 80% price range' },
+            { title: 'assess_quote', note: 'cheap, fair or expensive' },
+            { title: 'Streamlit app', note: 'predict and assess a quote' }
+        ],
+        chart: {
+            type: 'coverage',
+            title: 'Share of test fares inside the 80% price range, by price quartile',
+            caption: 'Two XGBoost quantile models calibrated with conformalized quantile regression. Dashed line: 80% target.',
+            sourceUrl: 'https://github.com/thanhtan2210/flight-price-prediction/blob/main/models/interval_metrics.json',
+            sourceLabel: 'models/interval_metrics.json',
+            data: {
+                unit: '%',
+                target: 80,
+                xTitle: 'Test price range (INR)',
+                bars: [
+                    { from: '1,759', to: '5,192', value: 82.1, n: 525 },
+                    { from: '5,192', to: '8,040', value: 74.5, n: 526 },
+                    { from: '8,040', to: '11,934', value: 79.4, n: 519 },
+                    { from: '11,934', to: '54,826', value: 79.2, n: 523 }
+                ]
+            }
+        }
     }
 ]
 
-export const serviceData = [
-    {
-        icon: assets.dashboard_icon, // Đổi icon cho phù hợp (ví dụ: database, server)
-        title: 'Data Pipeline & Infrastructure Engineering',
-        description: 'Designing and building robust ETL pipelines and scalable data architectures. I transform, clean, and consolidate raw data into reliable databases to fuel applications and analytics.',
-        link: ''
-    },
-    {
-        icon: assets.backend_icon, // Đổi icon (ví dụ: api, code)
-        title: 'Scalable Backend & Software Systems',
-        description: 'Architecting high-performance backend systems and APIs. I bridge the gap between complex databases and applications to deliver secure, scalable, and seamless software solutions.',
-        link: ''
-    },
-    {
-        icon: assets.ml_icon, // Đổi icon (ví dụ: gear, cloud)
-        title: 'Machine Learning Engineering & MLOps',
-        description: 'Bridging the gap between data science and production. I optimize, scale, and deploy machine learning models into live environments, ensuring reliable performance and automated workflows.',
-        link: ''
-    },
-    {
-        icon: assets.ai_solution_icon,
-        title: 'End-to-End AI Integration',
-        description: 'Developing and seamlessly integrating AI capabilities into existing software ecosystems. From intelligent APIs to automated data platforms, I build solutions that drive real business value.',
-        link: ''
-    },
-];
-
 export const infoList = [
-    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages & Tools', description: 'Python, SQL, Polars, Airflow, BigQuery, MLflow' },
-    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Bachelor in Computer Science' },
-    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built 5+ data engineering and MLOps projects' }
+    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages & Tools', description: 'Python, SQL, DuckDB, XGBoost, MLflow, Docker' },
+    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'B.Sc. Computer Science, HCMUT (2022–2027)' },
+    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Experience', description: 'Backend Developer Intern, MyTegami.win (2025)' }
 ];
 
 export const toolsData = [
-    assets.vscode, assets.aws, assets.mongodb, assets.git, assets.python
+    assets.vscode, assets.git, assets.python
 ];

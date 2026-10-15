@@ -16,13 +16,15 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        const onScroll = () => {
             if (scrollY > 50) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
             }
-        })
+        }
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
     return (
@@ -31,12 +33,11 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <Image src={assets.header_bg_color} alt='' className='w-full' />
             </div>
             <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScrolled ? "bg-white bg-opacity-50 backdrop-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20" : ""}`}>
-                <Image src={isDarkMode ? assets.logo_dark : assets.logo} alt="logo" className="w-32" />
+                <p className="font-ovo text-2xl">Phan Thanh Tan</p>
 
                 <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScrolled ? "" : "bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/50 dark:bg-transparent"}`}>
                     <li><a href="#top" className="font-Ovo">Home</a></li>
                     <li><a href="#about" className="font-Ovo">About me</a></li>
-                    <li><a href="#service" className="font-Ovo">Services</a></li>
                     <li><a href="#work" className="font-Ovo">My Work</a></li>
                     <li><a href="#contact" className="font-Ovo">Contact me</a></li>
                 </ul>
@@ -59,7 +60,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
                 {/* Mobile menu*/}
 
-                <ul ref={sideMenuRef} className='flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-0 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white'>
+                <ul ref={sideMenuRef} className='translate-x-full flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-0 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white'>
 
                     <div className='absolute top-6 right-6' onClick={closeMenu}>
                         <Image src={isDarkMode ? assets.close_white : assets.close_black} alt='' className='w-5 cursor-pointer' />
@@ -67,7 +68,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
                     <li><a onClick={closeMenu} href="#top" className="font-Ovo">Home</a></li>
                     <li><a onClick={closeMenu} href="#about" className="font-Ovo">About me</a></li>
-                    <li><a onClick={closeMenu} href="#service" className="font-Ovo">Services</a></li>
                     <li><a onClick={closeMenu} href="#work" className="font-Ovo">My Work</a></li>
                     <li><a onClick={closeMenu} href="#contact" className="font-Ovo">Contact me</a></li>
                 </ul>
