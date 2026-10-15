@@ -127,7 +127,7 @@ export const workData = [
         impact: 'On July 2019, a month no modelling decision had looked at: HitRate@10 27.7% against 22.4% for popularity, NDCG@10 0.0831 against 0.0711 (paired difference +0.0121, 95% CI [+0.0044, +0.0193], 1,475 users). The API answers in about 5 ms (median, measured from the client).',
         challenges: 'Accuracy costs variety: the champion recommends 439 distinct movies across 1,475 users. Plain PureSVD did not beat popularity at first; the training window did most of the work. Evaluating each month\'s champion over several months is still planned.',
         stats: [
-            { value: '25M', label: 'MovieLens 25M dataset' },
+            { value: '1,475', label: 'users in the untouched July 2019 test' },
             { value: '27.7%', label: 'HitRate@10 (popularity 22.4%)' },
             { value: '+0.0121', label: 'NDCG@10 vs popularity (95% CI +0.0044 to +0.0193)' },
             { value: '~5 ms', label: 'median API latency' }
