@@ -125,12 +125,20 @@ const Intervals = ({ data, width, title }) => {
     // Percentages by default; ROC-AUC style data sets unit '' and digits 3.
     const unit = data.unit ?? '%', digits = data.digits ?? 1
     const v = (n) => `${fmt(n, digits)}${unit}`
-    const labeledTicks = data.axis.labeled ?? data.axis.ticks.filter((t) => t % 10 === 0)
-    const left = data.labelWidth ?? 84, right = 48, top = 4, headH = 24, rowH = 28, metricGap = 14, axisH = 24
+    const right = 48, top = 4, headH = 24, metricGap = 14, axisH = 24
+    // When the row names would leave too little room to plot, they move above each interval.
+    const stacked = width - (data.labelWidth ?? 84) - right < 160
+    const left = stacked ? 8 : data.labelWidth ?? 84
+    const rowH = stacked ? 42 : 28
     const rows = data.metrics[0].rows
     const H = top + data.metrics.length * (headH + rows.length * rowH) + (data.metrics.length - 1) * metricGap + axisH
     const plotW = width - left - right
     const x = (n) => left + ((n - data.axis.min) / (data.axis.max - data.axis.min)) * plotW
+    // Drop every other tick label while labels would sit closer than 36px.
+    let labeledTicks = data.axis.labeled ?? data.axis.ticks.filter((t) => t % 10 === 0)
+    while (labeledTicks.length > 2 && x(labeledTicks[1]) - x(labeledTicks[0]) < 36) {
+        labeledTicks = labeledTicks.filter((_, i) => i % 2 === 0)
+    }
     const plotBottom = H - axisH
     const label = `${title}. ` + data.metrics.map((m) => `${m.label}: ` + m.rows.map((r) => `${r.name} ${v(r.value)} (95% interval ${fmt(r.low, digits)} to ${fmt(r.high, digits)})`).join(', ')).join('; ')
     let cursor = top
@@ -153,14 +161,16 @@ const Intervals = ({ data, width, title }) => {
                                 <text x={0} y={y0 + 16} fontSize='12' fontWeight='600' className={TEXT}>{m.label}</text>
                                 {m.rows.map((r, ri) => {
                                     const cy = y0 + headH + ri * rowH + rowH / 2
+                                    // Centre line of the interval; in stacked mode the name takes the upper half of the row.
+                                    const by = stacked ? cy + 8 : cy
                                     const text = `${r.name}, ${m.label}: ${v(r.value)} (95% CI ${fmt(r.low, digits)}–${v(r.high)})`
                                     return (
-                                        <g key={r.name} {...handlers(x(r.value), cy - 8, text)}>
+                                        <g key={r.name} {...handlers(x(r.value), by - 8, text)}>
                                             <rect x={0} y={cy - rowH / 2} width={width} height={rowH} fill='transparent' />
-                                            <text x={0} y={cy} dy='0.32em' fontSize='12' className={MUTED}>{r.name}</text>
-                                            <rect x={x(r.low)} y={cy - 4} width={Math.max(8, x(r.high) - x(r.low))} height='8' rx='4' className={`${FILL[r.role]} opacity-50 dark:opacity-70`} />
-                                            <circle cx={x(r.value)} cy={cy} r='6' strokeWidth='2' className={`${FILL[r.role]} stroke-white dark:stroke-darkTheme`} />
-                                            <text x={x(r.high) + 8} y={cy} dy='0.32em' fontSize='11' className={TEXT}>{v(r.value)}</text>
+                                            <text x={0} y={stacked ? cy - 10 : cy} dy='0.32em' fontSize='12' strokeWidth='4' className={`${MUTED} ${stacked ? HALO : ''}`}>{r.name}</text>
+                                            <rect x={x(r.low)} y={by - 4} width={Math.max(8, x(r.high) - x(r.low))} height='8' rx='4' className={`${FILL[r.role]} opacity-50 dark:opacity-70`} />
+                                            <circle cx={x(r.value)} cy={by} r='6' strokeWidth='2' className={`${FILL[r.role]} stroke-white dark:stroke-darkTheme`} />
+                                            <text x={x(r.high) + 8} y={by} dy='0.32em' fontSize='11' className={TEXT}>{v(r.value)}</text>
                                         </g>
                                     )
                                 })}
